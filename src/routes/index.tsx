@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { ClipboardList, Home, IceCreamCone, MapPin } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 import { TiltCard } from "@/components/TiltCard";
