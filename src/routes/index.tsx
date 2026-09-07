@@ -90,7 +90,7 @@ function Index() {
   const y = useScrollY();
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main id="top" className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* ambient depth */}
       <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
         <span className="blob left-[-10%] top-[-8%] h-[42vw] w-[42vw] bg-primary/40" />
