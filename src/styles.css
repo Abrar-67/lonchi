@@ -22,6 +22,7 @@
   --font-display: "Baloo 2", ui-rounded, system-ui, sans-serif;
   --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --shadow-soft: var(--shadow-soft);
+  --shadow-deep: var(--shadow-deep);
   --radius-sm: calc(var(--radius) - 4px);
 
   --radius-md: calc(var(--radius) - 2px);
