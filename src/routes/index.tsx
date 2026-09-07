@@ -309,18 +309,18 @@ function Index() {
       <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-border px-3 pb-[env(safe-area-inset-bottom)] glass md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-4 py-2 text-[11px] font-semibold">
           {[
-            { href: "#top", label: "Home", icon: "🏠" },
-            { href: "#menu", label: "Scoops", icon: "🍦" },
-            { href: "#boards", label: "Menu", icon: "📋" },
-            { href: "#store", label: "Visit", icon: "📍" },
-          ].map((t) => (
+            { href: "#top", label: "Home", Icon: Home },
+            { href: "#menu", label: "Scoops", Icon: IceCreamCone },
+            { href: "#boards", label: "Menu", Icon: ClipboardList },
+            { href: "#store", label: "Visit", Icon: MapPin },
+          ].map(({ href, label, Icon }) => (
             <a
-              key={t.label}
-              href={t.href}
+              key={label}
+              href={href}
               className="flex flex-col items-center gap-1 rounded-2xl py-1.5 text-muted-foreground transition-colors active:text-primary"
             >
-              <span className="text-lg leading-none">{t.icon}</span>
-              {t.label}
+              <Icon className="h-5 w-5" strokeWidth={2.2} />
+              {label}
             </a>
           ))}
         </div>
