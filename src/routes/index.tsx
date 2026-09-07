@@ -130,7 +130,30 @@ function Index() {
         </div>
       </section>
 
-      <section id="store" className="bg-secondary py-20">
+      <section id="boards" className="bg-secondary/60 py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <h2 className="font-display text-3xl text-primary">Full menu</h2>
+          <p className="mt-3 text-muted-foreground">
+            Scoops from 80 Tk, drinks from 170 Tk.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <img
+              src={menuBoardAsset.url}
+              alt="Lonchi ice cream menu with flavours and prices"
+              loading="lazy"
+              className="w-full rounded-3xl border border-border shadow-soft"
+            />
+            <img
+              src={drinksBoardAsset.url}
+              alt="Lonchi drinks menu with milk teas and boba"
+              loading="lazy"
+              className="w-full rounded-3xl border border-border shadow-soft"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="store" className="py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 md:grid-cols-2">
           <img
             src={storeAsset.url}
@@ -140,9 +163,12 @@ function Index() {
           />
           <div>
             <h2 className="font-display text-3xl text-primary">Come sit with us</h2>
-            <p className="mt-4 text-muted-foreground">
-              Pink walls, a full gelato counter and a couple of stools by the window.
-              Pick a flavour, take a seat and stay a while.
+            <p className="mt-4 text-muted-foreground">{ADDRESS}</p>
+            <p className="mt-3 text-muted-foreground">
+              Phone:{" "}
+              <a href={`tel:+880${PHONE.replace(/\D/g, "").slice(1)}`} className="text-primary">
+                {PHONE}
+              </a>
             </p>
             <a
               href={MAPS_URL}
@@ -162,10 +188,12 @@ function Index() {
           alt="Lonchi logo"
           className="h-40 w-auto rounded-3xl object-cover object-top"
         />
+        <p className="text-sm text-muted-foreground">{ADDRESS}</p>
         <p className="text-sm text-muted-foreground">
-          Lonchi — Ice Cream &amp; More
+          Lonchi — Ice Cream &amp; More · {PHONE}
         </p>
       </footer>
+
     </main>
   );
 }
