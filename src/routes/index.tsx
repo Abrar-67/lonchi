@@ -53,7 +53,7 @@ function Index() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <header className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-        <img src={logoAsset.url} alt="Lonchi logo" className="h-14 w-auto" />
+        <span className="font-display text-3xl text-primary">Lonchi</span>
         <nav className="flex items-center gap-6 text-sm font-medium">
           <a href="#menu" className="hidden hover:text-primary sm:inline">
             Menu
@@ -149,7 +149,11 @@ function Index() {
       </section>
 
       <footer className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-12 text-center">
-        <img src={logoAsset.url} alt="" className="h-16 w-auto" />
+        <img
+          src={logoAsset.url}
+          alt="Lonchi logo"
+          className="h-40 w-auto rounded-3xl object-cover object-top"
+        />
         <p className="text-sm text-muted-foreground">
           Lonchi — Ice Cream &amp; More
         </p>
