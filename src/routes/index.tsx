@@ -179,14 +179,14 @@ function Index() {
 
 
       {/* TICKER */}
-      <div className="marquee mt-16 overflow-hidden border-y border-border bg-primary py-4 text-primary-foreground">
+      <div className="marquee mt-12 overflow-hidden border-y border-border bg-primary py-3 text-primary-foreground sm:mt-16 sm:py-4">
         <div className="marquee-track">
           {[0, 1].map((dup) => (
             <div key={dup} className="flex shrink-0 items-center">
               {ticker.map((t) => (
                 <span
                   key={t + dup}
-                  className="whitespace-nowrap px-8 font-display text-xl tracking-wide"
+                  className="whitespace-nowrap px-5 font-display text-base tracking-wide sm:px-8 sm:text-xl"
                 >
                   {t} <span className="opacity-60">✦</span>
                 </span>
@@ -197,27 +197,29 @@ function Index() {
       </div>
 
       {/* FAVOURITES */}
-      <section id="menu" className="mx-auto max-w-6xl px-5 py-24">
+      <section id="menu" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-16 sm:px-5 sm:py-24">
         <Reveal>
-          <h2 className="font-display text-4xl gradient-text">Favourites</h2>
+          <h2 className="font-display text-3xl gradient-text sm:text-4xl">Favourites</h2>
           <p className="mt-3 max-w-xl text-muted-foreground">
-            Hover a card — everything here is made the same day it's served.
+            Everything here is made the same day it's served.
           </p>
         </Reveal>
-        <div className="mt-10 grid gap-8 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
           {menu.map((item, i) => (
             <Reveal key={item.name} delay={i * 130}>
-              <TiltCard className="overflow-hidden rounded-3xl border border-border bg-card">
+              <TiltCard className="h-full overflow-hidden rounded-3xl border border-border bg-card">
                 <div className="overflow-hidden">
                   <img
                     src={item.image}
                     alt={item.name}
                     loading="lazy"
-                    className="h-64 w-full object-cover transition-transform duration-700 hover:scale-110"
+                    className="h-56 w-full object-cover transition-transform duration-700 hover:scale-110 sm:h-64"
                   />
                 </div>
-                <div className="p-6">
-                  <h3 className="font-display text-2xl text-foreground">{item.name}</h3>
+                <div className="p-5 sm:p-6">
+                  <h3 className="font-display text-xl text-foreground sm:text-2xl">
+                    {item.name}
+                  </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{item.note}</p>
                 </div>
               </TiltCard>
@@ -227,15 +229,15 @@ function Index() {
       </section>
 
       {/* MENU BOARDS */}
-      <section id="boards" className="relative py-24">
-        <div className="mx-auto max-w-6xl px-5">
+      <section id="boards" className="relative scroll-mt-24 py-16 sm:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-5">
           <Reveal>
-            <h2 className="font-display text-4xl gradient-text">Full menu</h2>
+            <h2 className="font-display text-3xl gradient-text sm:text-4xl">Full menu</h2>
             <p className="mt-3 text-muted-foreground">
               Scoops from 80 Tk, drinks from 170 Tk.
             </p>
           </Reveal>
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
+          <div className="mt-8 grid gap-6 sm:gap-8 md:grid-cols-2">
             {[
               { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices" },
               { src: drinksBoardAsset.url, alt: "Lonchi drinks menu with milk teas and boba" },
@@ -251,8 +253,8 @@ function Index() {
       </section>
 
       {/* SHOP */}
-      <section id="store" className="py-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
+      <section id="store" className="scroll-mt-24 py-16 sm:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 sm:px-5 md:grid-cols-2 md:gap-12">
           <Reveal>
             <TiltCard className="overflow-hidden rounded-3xl border border-border">
               <img
@@ -264,7 +266,9 @@ function Index() {
             </TiltCard>
           </Reveal>
           <Reveal delay={120}>
-            <h2 className="font-display text-4xl gradient-text">Come sit with us</h2>
+            <h2 className="font-display text-3xl gradient-text sm:text-4xl">
+              Come sit with us
+            </h2>
             <p className="mt-5 text-muted-foreground">{ADDRESS}</p>
             <p className="mt-3 text-muted-foreground">
               Phone:{" "}
@@ -279,7 +283,7 @@ function Index() {
               href={MAPS_URL}
               target="_blank"
               rel="noreferrer"
-              className="btn-3d mt-8 inline-block rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground"
+              className="btn-3d mt-7 inline-block rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground"
             >
               Open in Google Maps
             </a>
@@ -287,12 +291,12 @@ function Index() {
         </div>
       </section>
 
-      <footer className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-5 py-16 text-center">
+      <footer className="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 pb-28 pt-12 text-center sm:px-5 sm:pb-16 sm:pt-16">
         <Reveal>
           <img
             src={logoAsset.url}
             alt="Lonchi logo"
-            className="float-soft h-40 w-auto rounded-3xl object-cover object-top shadow-soft"
+            className="float-soft h-32 w-auto rounded-3xl object-cover object-top shadow-soft sm:h-40"
           />
         </Reveal>
         <p className="text-sm text-muted-foreground">{ADDRESS}</p>
@@ -300,6 +304,28 @@ function Index() {
           Lonchi — Ice Cream &amp; More · {PHONE}
         </p>
       </footer>
+
+      {/* MOBILE TAB BAR */}
+      <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-border px-3 pb-[env(safe-area-inset-bottom)] glass md:hidden">
+        <div className="mx-auto grid max-w-md grid-cols-4 py-2 text-[11px] font-semibold">
+          {[
+            { href: "#top", label: "Home", icon: "🏠" },
+            { href: "#menu", label: "Scoops", icon: "🍦" },
+            { href: "#boards", label: "Menu", icon: "📋" },
+            { href: "#store", label: "Visit", icon: "📍" },
+          ].map((t) => (
+            <a
+              key={t.label}
+              href={t.href}
+              className="flex flex-col items-center gap-1 rounded-2xl py-1.5 text-muted-foreground transition-colors active:text-primary"
+            >
+              <span className="text-lg leading-none">{t.icon}</span>
+              {t.label}
+            </a>
+          ))}
+        </div>
+      </nav>
     </main>
   );
 }
+
