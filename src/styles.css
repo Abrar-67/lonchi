@@ -22,6 +22,7 @@
   --font-display: "Baloo 2", ui-rounded, system-ui, sans-serif;
   --font-sans: "Nunito", ui-sans-serif, system-ui, sans-serif;
   --shadow-soft: var(--shadow-soft);
+  --shadow-deep: var(--shadow-deep);
   --radius-sm: calc(var(--radius) - 4px);
 
   --radius-md: calc(var(--radius) - 2px);
@@ -100,6 +101,8 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --shadow-soft: 0 18px 40px -22px oklch(0.48 0.16 305 / 0.45);
+  --shadow-deep: 0 40px 80px -30px oklch(0.42 0.18 305 / 0.55), 0 8px 24px -12px oklch(0.42 0.18 305 / 0.35);
+  --gradient-brand: linear-gradient(120deg, oklch(0.48 0.16 305), oklch(0.72 0.17 350), oklch(0.62 0.16 275));
 }
 
 
@@ -143,10 +146,15 @@
     border-color: var(--color-border);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    overflow-x: hidden;
   }
 
   h1, h2, h3 {
@@ -154,3 +162,143 @@
     font-weight: 700;
   }
 }
+
+/* ---------- motion + depth utilities ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(36px) scale(0.98);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.tilt-scene {
+  perspective: 1100px;
+}
+
+.tilt-card {
+  --rx: 0deg;
+  --ry: 0deg;
+  --gx: 50%;
+  --gy: 50%;
+  position: relative;
+  transform: rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.tilt-card:hover {
+  box-shadow: var(--shadow-deep);
+}
+
+.tilt-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    circle at var(--gx) var(--gy),
+    oklch(1 0 0 / 0.35),
+    transparent 55%
+  );
+}
+
+.tilt-card:hover .tilt-sheen {
+  opacity: 1;
+}
+
+.lift-3d {
+  transform: translateZ(50px);
+}
+
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.5;
+  animation: float-blob 14s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float-blob {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(30px, -40px, 0) scale(1.12); }
+  66% { transform: translate3d(-25px, 25px, 0) scale(0.92); }
+}
+
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+.float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 24s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes shine-sweep {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+.btn-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  box-shadow: 0 10px 0 -2px color-mix(in oklab, var(--primary) 55%, black), var(--shadow-soft);
+}
+
+.btn-3d:hover {
+  transform: translateY(-3px) rotateX(8deg);
+}
+
+.btn-3d:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0 -2px color-mix(in oklab, var(--primary) 55%, black);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .blob, .float-soft, .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
