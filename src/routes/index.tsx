@@ -104,24 +104,26 @@ function Index() {
         />
       </div>
 
-      <header className="sticky top-0 z-30">
-        <div className="mx-auto mt-4 flex max-w-6xl items-center justify-between rounded-full border border-border px-6 py-3 shadow-soft glass">
-          <span className="font-display text-3xl gradient-text">Lonchi</span>
-          <nav className="flex items-center gap-6 text-sm font-medium">
-            <a href="#menu" className="hidden transition-colors hover:text-primary sm:inline">
+      <header className="sticky top-0 z-30 px-3 sm:px-5">
+        <div className="mx-auto mt-3 grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 rounded-full border border-border px-4 py-2.5 shadow-soft glass sm:flex sm:justify-between sm:px-6 sm:py-3">
+          <span className="truncate font-display text-2xl gradient-text sm:text-3xl">
+            Lonchi
+          </span>
+          <nav className="flex shrink-0 items-center gap-5 text-sm font-medium">
+            <a href="#menu" className="hidden transition-colors hover:text-primary md:inline">
               Menu
             </a>
-            <a href="#boards" className="hidden transition-colors hover:text-primary sm:inline">
+            <a href="#boards" className="hidden transition-colors hover:text-primary md:inline">
               Prices
             </a>
-            <a href="#store" className="hidden transition-colors hover:text-primary sm:inline">
+            <a href="#store" className="hidden transition-colors hover:text-primary md:inline">
               Our shop
             </a>
             <a
               href={MAPS_URL}
               target="_blank"
               rel="noreferrer"
-              className="btn-3d rounded-full bg-primary px-5 py-2 text-primary-foreground"
+              className="btn-3d rounded-full bg-primary px-4 py-2 text-primary-foreground sm:px-5"
             >
               Visit us
             </a>
@@ -130,10 +132,10 @@ function Index() {
       </header>
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-5 pt-14">
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:px-5 sm:pt-14">
         <div style={{ perspective: "1400px" }}>
           <div
-            className="overflow-hidden rounded-4xl border border-border"
+            className="overflow-hidden rounded-3xl border border-border sm:rounded-4xl"
             style={{
               transform: `rotateX(${Math.max(0, 10 - y / 45)}deg) translateY(${-Math.min(y * 0.06, 40)}px)`,
               boxShadow: "var(--shadow-deep)",
@@ -149,31 +151,32 @@ function Index() {
           </div>
         </div>
 
-        <Reveal className="mx-auto mt-12 max-w-2xl text-center">
-          <h1 className="font-display text-5xl leading-tight gradient-text sm:text-7xl">
+        <Reveal className="mx-auto mt-9 max-w-2xl text-center sm:mt-12">
+          <h1 className="font-display text-4xl leading-tight gradient-text sm:text-6xl lg:text-7xl">
             Ice cream solves everything
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground">
+          <p className="mt-5 text-base text-muted-foreground sm:mt-6 sm:text-lg">
             Lonchi is a little scoop shop with big flavours — creamy classics, loaded
             waffles and freshly shaken bubble tea, made fresh every day in Dhaka
             Cantonment.
           </p>
-          <div className="mt-9 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
             <a
               href="#menu"
-              className="btn-3d rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground"
+              className="btn-3d rounded-full bg-primary px-7 py-3 text-center font-semibold text-primary-foreground"
             >
               See what we scoop
             </a>
             <a
               href={`tel:+880${PHONE.replace(/\D/g, "").slice(1)}`}
-              className="rounded-full border border-border px-7 py-3 font-semibold shadow-soft transition-transform duration-300 hover:-translate-y-1 glass"
+              className="rounded-full border border-border px-7 py-3 text-center font-semibold shadow-soft transition-transform duration-300 hover:-translate-y-1 glass"
             >
               Call {PHONE}
             </a>
           </div>
         </Reveal>
       </section>
+
 
       {/* TICKER */}
       <div className="marquee mt-16 overflow-hidden border-y border-border bg-primary py-4 text-primary-foreground">
