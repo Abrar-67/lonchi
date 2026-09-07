@@ -3,11 +3,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import bannerAsset from "@/assets/unnamed_1.webp.asset.json";
 import storeAsset from "@/assets/unnamed.webp.asset.json";
 import logoAsset from "@/assets/unnamed_5.webp.asset.json";
-import pistachioAsset from "@/assets/unnamed_4.webp.asset.json";
+import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
 import waffleAsset from "@/assets/unnamed_3.webp.asset.json";
-import bobaAsset from "@/assets/unnamed_2.webp.asset.json";
+import bobaAsset from "@/assets/unnamed_9.webp.asset.json";
+import menuBoardAsset from "@/assets/unnamed_8.webp.asset.json";
+import drinksBoardAsset from "@/assets/unnamed_6.webp.asset.json";
 
-const MAPS_URL = "https://share.google/kDASFVdT2n8AH4XsF";
+const ADDRESS =
+  "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, Dhaka Cantonment, Opposite of Akram Masjid, Dhaka 1206, Bangladesh";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  "Lonchi Ice Cream & More, " + ADDRESS,
+)}`;
+const PHONE = "01609-905226";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,8 +41,8 @@ export const Route = createFileRoute("/")({
 
 const menu = [
   {
-    name: "Pistachio Scoop",
-    note: "Roasted pistachios folded through slow-churned cream.",
+    name: "Purely Pistachio",
+    note: "Roasted pistachios folded through slow-churned cream. 80/140 Tk.",
     image: pistachioAsset.url,
   },
   {
@@ -43,8 +51,8 @@ const menu = [
     image: waffleAsset.url,
   },
   {
-    name: "Brown Sugar Boba",
-    note: "Milk tea, chewy pearls, sealed fresh at the counter.",
+    name: "Blueberry Cream Boba",
+    note: "Blueberry, whipped cream and chewy pearls, shaken to order.",
     image: bobaAsset.url,
   },
 ];
@@ -122,7 +130,30 @@ function Index() {
         </div>
       </section>
 
-      <section id="store" className="bg-secondary py-20">
+      <section id="boards" className="bg-secondary/60 py-20">
+        <div className="mx-auto max-w-6xl px-5">
+          <h2 className="font-display text-3xl text-primary">Full menu</h2>
+          <p className="mt-3 text-muted-foreground">
+            Scoops from 80 Tk, drinks from 170 Tk.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <img
+              src={menuBoardAsset.url}
+              alt="Lonchi ice cream menu with flavours and prices"
+              loading="lazy"
+              className="w-full rounded-3xl border border-border shadow-soft"
+            />
+            <img
+              src={drinksBoardAsset.url}
+              alt="Lonchi drinks menu with milk teas and boba"
+              loading="lazy"
+              className="w-full rounded-3xl border border-border shadow-soft"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="store" className="py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 md:grid-cols-2">
           <img
             src={storeAsset.url}
@@ -132,9 +163,12 @@ function Index() {
           />
           <div>
             <h2 className="font-display text-3xl text-primary">Come sit with us</h2>
-            <p className="mt-4 text-muted-foreground">
-              Pink walls, a full gelato counter and a couple of stools by the window.
-              Pick a flavour, take a seat and stay a while.
+            <p className="mt-4 text-muted-foreground">{ADDRESS}</p>
+            <p className="mt-3 text-muted-foreground">
+              Phone:{" "}
+              <a href={`tel:+880${PHONE.replace(/\D/g, "").slice(1)}`} className="text-primary">
+                {PHONE}
+              </a>
             </p>
             <a
               href={MAPS_URL}
@@ -154,10 +188,12 @@ function Index() {
           alt="Lonchi logo"
           className="h-40 w-auto rounded-3xl object-cover object-top"
         />
+        <p className="text-sm text-muted-foreground">{ADDRESS}</p>
         <p className="text-sm text-muted-foreground">
-          Lonchi — Ice Cream &amp; More
+          Lonchi — Ice Cream &amp; More · {PHONE}
         </p>
       </footer>
+
     </main>
   );
 }
