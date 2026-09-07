@@ -41,8 +41,8 @@ export const Route = createFileRoute("/")({
 
 const menu = [
   {
-    name: "Pistachio Scoop",
-    note: "Roasted pistachios folded through slow-churned cream.",
+    name: "Purely Pistachio",
+    note: "Roasted pistachios folded through slow-churned cream. 80/140 Tk.",
     image: pistachioAsset.url,
   },
   {
@@ -51,8 +51,8 @@ const menu = [
     image: waffleAsset.url,
   },
   {
-    name: "Brown Sugar Boba",
-    note: "Milk tea, chewy pearls, sealed fresh at the counter.",
+    name: "Blueberry Cream Boba",
+    note: "Blueberry, whipped cream and chewy pearls, shaken to order.",
     image: bobaAsset.url,
   },
 ];
