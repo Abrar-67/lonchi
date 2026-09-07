@@ -3,11 +3,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import bannerAsset from "@/assets/unnamed_1.webp.asset.json";
 import storeAsset from "@/assets/unnamed.webp.asset.json";
 import logoAsset from "@/assets/unnamed_5.webp.asset.json";
-import pistachioAsset from "@/assets/unnamed_4.webp.asset.json";
+import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
 import waffleAsset from "@/assets/unnamed_3.webp.asset.json";
-import bobaAsset from "@/assets/unnamed_2.webp.asset.json";
+import bobaAsset from "@/assets/unnamed_9.webp.asset.json";
+import menuBoardAsset from "@/assets/unnamed_8.webp.asset.json";
+import drinksBoardAsset from "@/assets/unnamed_6.webp.asset.json";
 
-const MAPS_URL = "https://share.google/kDASFVdT2n8AH4XsF";
+const ADDRESS =
+  "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, Dhaka Cantonment, Opposite of Akram Masjid, Dhaka 1206, Bangladesh";
+const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  "Lonchi Ice Cream & More, " + ADDRESS,
+)}`;
+const PHONE = "01609-905226";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
