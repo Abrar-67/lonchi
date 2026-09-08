@@ -21,7 +21,7 @@ import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
 import waffleAsset from "@/assets/unnamed_3.webp.asset.json";
 import bobaAsset from "@/assets/unnamed_9.webp.asset.json";
 import menuBoardAsset from "@/assets/unnamed_8.webp.asset.json";
-import drinksBoardAsset from "@/assets/unnamed_6.webp.asset.json";
+import drinksBoardAsset from "@/assets/lonchi-drinks-menu.webp.asset.json";
 
 const ADDRESS =
   "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, Dhaka Cantonment, opposite Akram Masjid, Dhaka 1206";
