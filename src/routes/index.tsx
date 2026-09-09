@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
+import { Reviews } from "@/components/Reviews";
 
 import bannerAsset from "@/assets/unnamed_1.webp.asset.json";
 import storeAsset from "@/assets/unnamed.webp.asset.json";
