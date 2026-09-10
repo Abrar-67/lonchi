@@ -85,11 +85,11 @@ const orderLinks = [
 function Index() {
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
           <a href="#top" aria-label="Lonchi home" className="flex items-center gap-2.5">
             <img src={logoAsset.url} alt="Lonchi logo" className="h-9 w-9 rounded-full object-cover" />
-            <span className="font-display text-xl text-foreground sm:text-2xl">LONCHI</span>
+            <span className="font-display text-lg font-bold text-foreground sm:text-xl">LONCHI</span>
           </a>
           <nav aria-label="Main navigation" className="flex items-center gap-6 text-sm font-semibold">
             <a href="#serve" className="hidden transition-colors hover:text-primary md:inline">What we serve</a>
@@ -105,18 +105,18 @@ function Index() {
       </header>
 
       <section className="hero-band">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-14 lg:py-24">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
           <Reveal>
             <span className="chip">Ice cream • waffles • boba</span>
-            <h1 className="mt-5 font-display text-[clamp(2.6rem,7vw,4.4rem)] leading-[1.02]">
-              A scoop of joy in Kachukhet.
+            <h1 className="mt-5 max-w-xl font-display text-[clamp(2.6rem,6vw,4rem)] font-semibold leading-[1.12]">
+              A little cup of joy, right here in Kachukhet.
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
               Lonchi serves fresh ice cream, loaded waffles and freshly shaken bubble tea — dine in,
               take away or get it delivered across Dhaka Cantonment.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#order" className="pill-btn bg-primary text-primary-foreground">Order now</a>
+              <a href={MAPS_URL} target="_blank" rel="noreferrer" className="pill-btn bg-primary text-primary-foreground">Find the shop</a>
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
             </div>
           </Reveal>
@@ -149,14 +149,14 @@ function Index() {
         </div>
 
         <Reveal>
-          <div className="stat-strip mt-10">
+          <div className="stat-strip section-bleed mt-14">
             {[
               { big: "3", small: "ways to enjoy: scoops, waffles, boba" },
               { big: "2", small: "delivery apps: foodpanda & Pathao" },
               { big: "1", small: "shop, opposite Akram Masjid" },
             ].map((stat) => (
               <div key={stat.small}>
-                <p className="font-display text-3xl text-primary">{stat.big}</p>
+                <p className="font-display text-3xl font-bold text-primary">{stat.big}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{stat.small}</p>
               </div>
             ))}

@@ -84,7 +84,7 @@ export function Reviews() {
       : null;
 
   return (
-    <section id="reviews" className="scroll-mt-24 bg-muted/60 py-16 sm:py-20">
+    <section id="reviews" className="reviews-band scroll-mt-24 py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
@@ -108,7 +108,7 @@ export function Reviews() {
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr]">
           <Reveal>
-            <form onSubmit={submit} className="soft-card space-y-4 p-5">
+            <form onSubmit={submit} className="review-panel space-y-4 p-5 sm:p-6">
               <div>
                 <label htmlFor="review-name" className="text-sm font-semibold">Your name</label>
                 <input
@@ -118,7 +118,7 @@ export function Reviews() {
                   maxLength={60}
                   required
                   placeholder="e.g. Arefin"
-                  className="mt-1.5 w-full rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition focus:border-primary"
+                  className="review-input mt-1.5 w-full border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/20"
                 />
               </div>
 
@@ -132,7 +132,7 @@ export function Reviews() {
                       onClick={() => setRating(i)}
                       aria-label={`${i} star${i === 1 ? "" : "s"}`}
                       aria-pressed={rating === i}
-                      className="rounded-full p-1 transition hover:scale-110"
+                      className="rounded-full p-1 transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     >
                       <Star
                         className={`h-7 w-7 ${i <= rating ? "fill-primary text-primary" : "text-muted-foreground/40"}`}
@@ -153,7 +153,7 @@ export function Reviews() {
                   required
                   rows={4}
                   placeholder="What did you order, and how was it?"
-                  className="mt-1.5 w-full resize-y rounded-xl border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition focus:border-primary"
+                  className="review-input mt-1.5 w-full resize-y border border-border bg-background px-3.5 py-2.5 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/20"
                 />
                 <p className="mt-1 text-right text-xs text-muted-foreground">{comment.length}/600</p>
               </div>
@@ -186,7 +186,7 @@ export function Reviews() {
             )}
             {reviews.map((review, index) => (
               <Reveal key={review.id} delay={Math.min(index, 4) * 80}>
-                <article className="soft-card h-full p-5">
+                <article className="review-card h-full p-5">
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="font-display text-lg">{review.name}</h3>
                     <Stars value={review.rating} />
