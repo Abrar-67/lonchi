@@ -9,6 +9,7 @@ import {
   Navigation,
   Phone,
   ShoppingBag,
+  Star,
 } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
@@ -94,6 +95,7 @@ function Index() {
             <a href="#serve" className="hidden transition-colors hover:text-primary md:inline">What we serve</a>
             <a href="#menu" className="hidden transition-colors hover:text-primary md:inline">Menu</a>
             <a href="#order" className="hidden transition-colors hover:text-primary md:inline">Order</a>
+            <a href="#reviews" className="hidden transition-colors hover:text-primary md:inline">Reviews</a>
             <a href="#visit" className="hidden transition-colors hover:text-primary md:inline">Visit</a>
             <a href={MAPS_URL} target="_blank" rel="noreferrer" className="pill-btn bg-primary text-primary-foreground">
               Find the shop
@@ -208,7 +210,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="visit" className="scroll-mt-24 bg-muted/60 py-16 sm:py-20">
+      <Reviews />
+
+      <section id="visit" className="scroll-mt-24 py-16 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:items-center">
           <Reveal>
             <div className="soft-card overflow-hidden">
@@ -249,11 +253,12 @@ function Index() {
       </footer>
 
       <nav aria-label="Mobile navigation" className="mobile-nav fixed inset-x-3 bottom-3 z-50 md:hidden">
-        <div className="grid grid-cols-4 px-2 py-2 text-[10px] font-bold">
+        <div className="grid grid-cols-5 px-2 py-2 text-[10px] font-bold">
           {[
             { href: "#top", label: "Home", Icon: Home },
             { href: "#serve", label: "Scoops", Icon: IceCreamCone },
             { href: "#menu", label: "Menu", Icon: ClipboardList },
+            { href: "#reviews", label: "Reviews", Icon: Star },
             { href: "#visit", label: "Visit", Icon: MapPin },
           ].map(({ href, label, Icon }) => (
             <a key={label} href={href} className="flex min-h-12 flex-col items-center justify-center gap-1 text-muted-foreground transition-colors active:text-primary">
