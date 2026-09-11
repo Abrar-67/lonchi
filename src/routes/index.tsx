@@ -20,7 +20,7 @@ import {
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Reviews";
 
-import bannerAsset from "@/assets/lonchi-hero-banner.png.asset.json";
+
 import storeAsset from "@/assets/unnamed.webp.asset.json";
 import logoAsset from "@/assets/unnamed_5.webp.asset.json";
 import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
@@ -149,15 +149,6 @@ function Index() {
                 Find the shop
               </a>
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="hero-frame">
-              <img
-                src={bannerAsset.url}
-                alt="Lonchi ice cream banner with waffle bowl and berries"
-                className="h-full w-full object-cover"
-              />
             </div>
           </Reveal>
         </div>
