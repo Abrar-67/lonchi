@@ -20,7 +20,7 @@ import {
 import { Reveal } from "@/components/Reveal";
 import { Reviews } from "@/components/Reviews";
 
-import bannerAsset from "@/assets/lonchi-hero-banner.png.asset.json";
+
 import storeAsset from "@/assets/unnamed.webp.asset.json";
 import logoAsset from "@/assets/unnamed_5.webp.asset.json";
 import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
