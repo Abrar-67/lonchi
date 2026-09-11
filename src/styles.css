@@ -181,6 +181,14 @@
 .action-tile small { margin-top: 0.18rem; color: var(--muted-foreground); font-size: 0.75rem; }
 .icon-box { display: grid; height: 2.7rem; width: 2.7rem; flex: none; place-items: center; border-radius: 999px; background: var(--secondary); color: var(--secondary-foreground); }
 
+.gallery-frame {
+  aspect-ratio: 1 / 1;
+  border-radius: 1.25rem;
+  background: var(--card);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid color-mix(in oklab, var(--border) 65%, transparent);
+}
+
 .reviews-band { background: color-mix(in oklab, var(--secondary) 48%, var(--background)); }
 .review-panel, .review-card {
   border: 1px solid color-mix(in oklab, var(--border) 72%, transparent);
