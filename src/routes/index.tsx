@@ -151,15 +151,6 @@ function Index() {
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
             </div>
           </Reveal>
-          <Reveal delay={120}>
-            <div className="hero-frame">
-              <img
-                src={bannerAsset.url}
-                alt="Lonchi ice cream banner with waffle bowl and berries"
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
