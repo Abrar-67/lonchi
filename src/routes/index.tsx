@@ -27,7 +27,10 @@ import pistachioAsset from "@/assets/unnamed_7.webp.asset.json";
 import waffleAsset from "@/assets/unnamed_3.webp.asset.json";
 import bobaAsset from "@/assets/unnamed_9.webp.asset.json";
 import menuBoardAsset from "@/assets/unnamed_8.webp.asset.json";
-import drinksBoardAsset from "@/assets/lonchi-drinks-menu-clean.webp.asset.json";
+import bobaMenuAsset from "@/assets/lonchi-menu-boba.webp.asset.json";
+import shakesMenuAsset from "@/assets/lonchi-menu-shakes.webp.asset.json";
+import wafflesMenuAsset from "@/assets/lonchi-menu-waffles.webp.asset.json";
+import mcflurryMenuAsset from "@/assets/lonchi-menu-mcflurry.webp.asset.json";
 import ferrisAsset from "@/assets/lonchi-ferris-wheel.png.asset.json";
 import friendsAsset from "@/assets/lonchi-friends-drinks.png.asset.json";
 import kidsAsset from "@/assets/lonchi-kids-favorite.png.asset.json";
@@ -206,7 +209,10 @@ function Index() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
-              { src: drinksBoardAsset.url, alt: "Lonchi drinks menu with milk teas and boba", label: "Drinks menu" },
+              { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
+              { src: shakesMenuAsset.url, alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes", label: "Shakes, mojitos & frappes" },
+              { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
+              { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
             ].map((board, index) => (
               <Reveal key={board.label} delay={index * 120}>
                 <figure className="soft-card overflow-hidden">
