@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "46a31eb3-97f9-4ed2-9ce4-01d1cf4fa49c",
-  "project_id": "ccd606da-20a8-492a-95c6-ed59a343c032",
-  "url": "/__l5e/assets-v1/46a31eb3-97f9-4ed2-9ce4-01d1cf4fa49c/lonchi-ferris-wheel.png",
-  "r2_key": "a/v1/ccd606da-20a8-492a-95c6-ed59a343c032/46a31eb3-97f9-4ed2-9ce4-01d1cf4fa49c/lonchi-ferris-wheel.png",
-  "original_filename": "lonchi-ferris-wheel.png",
-  "size": 352218,
   "content_type": "image/png",
-  "created_at": "2026-09-11T05:08:11Z"
+  "created_at": "2026-09-11T05:08:11Z",
+  "original_filename": "lonchi-ferris-wheel.png",
+  "project_id": "c546074d-5249-4cbf-b77e-17a72e453dba",
+  "r2_key": "a/v1/c546074d-5249-4cbf-b77e-17a72e453dba/46a31eb3-97f9-4ed2-9ce4-01d1cf4fa49c/lonchi-ferris-wheel.png",
+  "size": 352218,
+  "url": "/__l5e/assets-v1/46a31eb3-97f9-4ed2-9ce4-01d1cf4fa49c/lonchi-ferris-wheel.png",
+  "version": 1
 }
