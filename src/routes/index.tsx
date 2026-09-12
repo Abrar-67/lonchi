@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
   ClipboardList,
+  Clock,
   Facebook,
   Home,
   IceCreamCone,
@@ -40,9 +41,16 @@ import mangoBannerAsset from "@/assets/lonchi-mango-drinks-banner.png.asset.json
 
 const ADDRESS =
   "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, Dhaka Cantonment, opposite Akram Masjid, Dhaka 1206";
-const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `Lonchi Ice Cream & More, ${ADDRESS}`,
-)}`;
+const MAPS_URL = "https://maps.app.goo.gl/XKnokmdRqivz1zpm9";
+const HOURS: Array<{ day: string; time: string }> = [
+  { day: "Saturday", time: "10:00 AM – 12:30 AM" },
+  { day: "Sunday", time: "10:00 AM – 12:00 AM" },
+  { day: "Monday", time: "10:00 AM – 12:00 AM" },
+  { day: "Tuesday", time: "10:00 AM – 12:00 AM" },
+  { day: "Wednesday", time: "10:00 AM – 12:00 AM" },
+  { day: "Thursday", time: "10:00 AM – 12:00 AM" },
+  { day: "Friday", time: "10:30 AM – 12:30 PM" },
+];
 const APPLE_MAPS_URL =
   "https://maps.apple.com/place?place-id=IC960B2545F8AA8BA&address=Ibrahimpur+Road%2C+Bangladesh&coordinate=23.793557%2C90.389889&name=Lonchi&_provider=9902";
 const PATHAO_URL = "https://food.pathao.com/restaurants/gm3tqnrt/lonchi-ice-cream-and-more";
