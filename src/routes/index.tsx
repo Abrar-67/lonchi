@@ -209,7 +209,10 @@ function Index() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
-              { src: drinksBoardAsset.url, alt: "Lonchi drinks menu with milk teas and boba", label: "Drinks menu" },
+              { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
+              { src: shakesMenuAsset.url, alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes", label: "Shakes, mojitos & frappes" },
+              { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
+              { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
             ].map((board, index) => (
               <Reveal key={board.label} delay={index * 120}>
                 <figure className="soft-card overflow-hidden">
