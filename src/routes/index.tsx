@@ -325,6 +325,20 @@ function Index() {
           <Reveal delay={100}>
             <h2 className="font-display text-3xl sm:text-4xl">Visit us</h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">{ADDRESS}</p>
+            <div className="soft-card mt-6 p-5">
+              <div className="flex items-center gap-2 font-display text-lg">
+                <Clock className="h-5 w-5 text-primary" />
+                Opening hours
+              </div>
+              <ul className="mt-3 space-y-1.5 text-sm">
+                {HOURS.map(({ day, time }) => (
+                  <li key={day} className="flex items-center justify-between gap-4">
+                    <span className="font-medium">{day}</span>
+                    <span className="text-muted-foreground">{time}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               <a href={MAPS_URL} target="_blank" rel="noreferrer" className="action-tile group">
                 <span className="icon-box">
