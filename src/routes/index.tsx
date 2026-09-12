@@ -31,6 +31,7 @@ import bobaMenuAsset from "@/assets/lonchi-menu-boba.webp.asset.json";
 import shakesMenuAsset from "@/assets/lonchi-menu-shakes.webp.asset.json";
 import wafflesMenuAsset from "@/assets/lonchi-menu-waffles.webp.asset.json";
 import mcflurryMenuAsset from "@/assets/lonchi-menu-mcflurry.webp.asset.json";
+import scoopsMenuAsset from "@/assets/lonchi-menu-scoops2.webp.asset.json";
 import ferrisAsset from "@/assets/lonchi-ferris-wheel.png.asset.json";
 import friendsAsset from "@/assets/lonchi-friends-drinks.png.asset.json";
 import kidsAsset from "@/assets/lonchi-kids-favorite.png.asset.json";
@@ -209,6 +210,7 @@ function Index() {
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {[
               { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
+              { src: scoopsMenuAsset.url, alt: "Lonchi scoops and cones menu: ruby chocolate, strawberry, mango, chocolate, waffle with ice cream, vanilla cone, chocolate cone and mango cone with prices", label: "Scoops & cones" },
               { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
               { src: shakesMenuAsset.url, alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes", label: "Shakes, mojitos & frappes" },
               { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
