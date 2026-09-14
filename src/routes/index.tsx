@@ -291,6 +291,36 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <Reveal>
+          <div className="soft-card overflow-hidden bg-gradient-to-br from-secondary/60 to-background p-6 sm:p-8">
+            <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="icon-box mt-0.5">
+                  <CreditCard className="h-5 w-5" />
+                </span>
+                <div>
+                  <h2 className="font-display text-2xl sm:text-3xl">Pay your way</h2>
+                  <p className="mt-1 max-w-md text-sm text-muted-foreground">
+                    Quick, secure checkout at the counter or on delivery.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Cash", "Amex", "bKash", "Visa", "Mastercard", "bKash NFC"].map((method) => (
+                  <span
+                    key={method}
+                    className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-sm"
+                  >
+                    {method}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
         <Reveal>
           <h2 className="font-display text-3xl sm:text-4xl">Sweet moments</h2>
