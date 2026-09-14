@@ -170,6 +170,28 @@ function Index() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-6xl px-5 pb-4 pt-8 sm:px-8 sm:pb-6 sm:pt-10">
+        <Reveal>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: Heart, label: "Made with love", note: "Every dessert is prepared with care." },
+              { icon: Sparkles, label: "Pure hygiene", note: "Clean prep, fresh ingredients, always." },
+              { icon: IceCreamCone, label: "Served fresh", note: "Scoops, waffles and boba made to order." },
+            ].map(({ icon: Icon, label, note }) => (
+              <div key={label} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+                <span className="icon-box h-10 w-10">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="font-display text-sm font-semibold">{label}</p>
+                  <p className="text-xs text-muted-foreground">{note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
       <section id="serve" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20">
         <Reveal>
           <h2 className="font-display text-3xl sm:text-4xl">What we serve</h2>
