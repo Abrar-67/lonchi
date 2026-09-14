@@ -3,7 +3,9 @@ import {
   ArrowUpRight,
   ClipboardList,
   Clock,
+  CreditCard,
   Facebook,
+  Heart,
   Home,
   IceCreamCone,
   Instagram,
@@ -13,6 +15,7 @@ import {
   Navigation,
   Phone,
   ShoppingBag,
+  Sparkles,
   Star,
   Twitter,
   Youtube,
@@ -153,7 +156,8 @@ function Index() {
               Your ultimate sweet escape, now in Kachukhet.
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Dive into delightful scoops, dreamy swirls and custom-made creations. Cool down, mix it up and taste
+              Dive into delightful scoops, dreamy swirls and custom-made creations. We are always sure to make the ice
+              cream with love and pure hygiene, using fresh ingredients every single day. Cool down, mix it up and taste
               happiness your way — at Muslim Modern School Road, Dhaka Cantonment.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -164,6 +168,28 @@ function Index() {
             </div>
           </Reveal>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-4 pt-8 sm:px-8 sm:pb-6 sm:pt-10">
+        <Reveal>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { icon: Heart, label: "Made with love", note: "Every dessert is prepared with care." },
+              { icon: Sparkles, label: "Pure hygiene", note: "Clean prep, fresh ingredients, always." },
+              { icon: IceCreamCone, label: "Served fresh", note: "Scoops, waffles and boba made to order." },
+            ].map(({ icon: Icon, label, note }) => (
+              <div key={label} className="flex items-center gap-3 rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+                <span className="icon-box h-10 w-10">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="font-display text-sm font-semibold">{label}</p>
+                  <p className="text-xs text-muted-foreground">{note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       <section id="serve" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20">
@@ -285,6 +311,36 @@ function Index() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8 sm:py-20">
+        <Reveal>
+          <div className="soft-card overflow-hidden bg-gradient-to-br from-secondary/60 to-background p-6 sm:p-8">
+            <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-4">
+                <span className="icon-box mt-0.5">
+                  <CreditCard className="h-5 w-5" />
+                </span>
+                <div>
+                  <h2 className="font-display text-2xl sm:text-3xl">Pay your way</h2>
+                  <p className="mt-1 max-w-md text-sm text-muted-foreground">
+                    Quick, secure checkout at the counter or on delivery.
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {["Cash", "Amex", "bKash", "Visa", "Mastercard", "bKash NFC"].map((method) => (
+                  <span
+                    key={method}
+                    className="inline-flex items-center rounded-full border border-border bg-card px-3 py-1.5 text-xs font-bold text-foreground shadow-sm"
+                  >
+                    {method}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
