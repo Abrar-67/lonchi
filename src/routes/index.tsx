@@ -156,7 +156,8 @@ function Index() {
               Your ultimate sweet escape, now in Kachukhet.
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Dive into delightful scoops, dreamy swirls and custom-made creations. Cool down, mix it up and taste
+              Dive into delightful scoops, dreamy swirls and custom-made creations. We are always sure to make the ice
+              cream with love and pure hygiene, using fresh ingredients every single day. Cool down, mix it up and taste
               happiness your way — at Muslim Modern School Road, Dhaka Cantonment.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
