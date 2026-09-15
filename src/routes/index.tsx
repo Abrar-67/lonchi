@@ -60,6 +60,7 @@ const APPLE_MAPS_URL =
   "https://maps.apple.com/place?place-id=IC960B2545F8AA8BA&address=Ibrahimpur+Road%2C+Bangladesh&coordinate=23.793557%2C90.389889&name=Lonchi&_provider=9902";
 const PATHAO_URL = "https://food.pathao.com/restaurants/gm3tqnrt/lonchi-ice-cream-and-more";
 const FOODPANDA_URL = "https://www.foodpanda.com.bd/restaurant/pv43/lonchi";
+const FOODI_URL = "https://foodibd.com/restaurant/13853";
 const INSTAGRAM_URL = "https://www.instagram.com/lonchiicecream";
 const FACEBOOK_URL = "https://www.facebook.com/lonchiicecream/";
 const YOUTUBE_URL = "https://www.youtube.com/@Lonchiicecream";
@@ -150,6 +151,7 @@ const serves = [
 const orderLinks = [
   { label: "foodpanda", note: "Delivery across Dhaka Cantonment", href: FOODPANDA_URL, icon: ShoppingBag },
   { label: "Pathao Food", note: "Order for delivery or pickup", href: PATHAO_URL, icon: ShoppingBag },
+  { label: "Foodi", note: "Order Lonchi on Foodi", href: FOODI_URL, icon: ShoppingBag },
 ];
 
 const socialLinks = [
@@ -282,7 +284,7 @@ function Index() {
           <div className="stat-strip section-bleed mt-14">
             {[
               { big: "3", small: "ways to enjoy: scoops, waffles, boba" },
-              { big: "2", small: "delivery apps: foodpanda & Pathao" },
+              { big: "3", small: "delivery apps: foodpanda, Pathao & Foodi" },
               { big: "1", small: "shop, opposite Akram Masjid" },
             ].map((stat) => (
               <div key={stat.small}>
