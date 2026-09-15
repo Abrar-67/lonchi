@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   ArrowUpRight,
   ClipboardList,
@@ -18,6 +19,7 @@ import {
   Sparkles,
   Star,
   Twitter,
+  X as XIcon,
   Youtube,
 } from "lucide-react";
 
@@ -66,6 +68,43 @@ const TIKTOK_URL = "https://www.tiktok.com/@lonchi365";
 const EMAIL = "lonchi.icecream@gmail.com";
 const PHONE = "01609-905226";
 const PHONE_URL = `tel:+880${PHONE.replace(/\D/g, "").slice(1)}`;
+const SITE_URL = "https://lonchi.lovable.app";
+const DAILY_SPECIAL = "Today's special: Purely Pistachio scoops & fresh mango boba";
+
+const LOCAL_BUSINESS_JSONLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  name: "Lonchi Ice Cream & More",
+  description:
+    "Ice cream scoops, loaded waffles, McFlurry, milkshakes and bubble tea in Kachukhet, Dhaka Cantonment.",
+  url: SITE_URL,
+  telephone: "+8801609905226",
+  email: EMAIL,
+  priceRange: "৳৳",
+  servesCuisine: ["Ice Cream", "Desserts", "Bubble Tea"],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, opposite Akram Masjid",
+    addressLocality: "Dhaka Cantonment",
+    addressRegion: "Dhaka",
+    postalCode: "1206",
+    addressCountry: "BD",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 23.793557, longitude: 90.389889 },
+  hasMap: MAPS_URL,
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, YOUTUBE_URL, X_URL, TIKTOK_URL],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "10:00",
+      closes: "24:00",
+    },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "10:30", closes: "12:30" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "24:00" },
+  ],
+});
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -84,6 +123,8 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: SITE_URL }],
+    scripts: [{ type: "application/ld+json", children: LOCAL_BUSINESS_JSONLD }],
   }),
   component: Index,
 });
@@ -126,7 +167,26 @@ const moments = [
   { src: friendsAsset.url, alt: "Friends sharing Lonchi bubble tea together" },
 ];
 
+const menuBoards = [
+  { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
+  {
+    src: scoopsMenuAsset.url,
+    alt: "Lonchi scoops and cones menu: ruby chocolate, strawberry, mango, chocolate, waffle with ice cream, vanilla cone, chocolate cone and mango cone with prices",
+    label: "Scoops & cones",
+  },
+  { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
+  {
+    src: shakesMenuAsset.url,
+    alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes",
+    label: "Shakes, mojitos & frappes",
+  },
+  { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
+  { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
+];
+
 function Index() {
+  const [lightbox, setLightbox] = useState<(typeof menuBoards)[number] | null>(null);
+
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
@@ -148,12 +208,19 @@ function Index() {
         </div>
       </header>
 
+      <div className="special-strip">
+        <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-5 py-2.5 text-center text-xs font-bold sm:text-sm">
+          <Sparkles className="h-4 w-4 flex-none" />
+          <span>{DAILY_SPECIAL}</span>
+        </div>
+      </div>
+
       <section className="hero-band">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
           <Reveal>
             <span className="chip">Ice cream • waffles • boba</span>
             <h1 className="mt-5 max-w-xl font-display text-[clamp(2.6rem,6vw,4rem)] font-semibold leading-[1.12]">
-              Your ultimate sweet escape, now in Kachukhet.
+              Your ultimate sweet escape, now in <span className="text-gradient">Kachukhet</span>.
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
               Dive into delightful scoops, dreamy swirls and custom-made creations. We are always sure to make the ice
@@ -165,6 +232,12 @@ function Index() {
                 Find the shop
               </a>
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="hero-collage">
+              <img src={pistachioAsset.url} alt="Pistachio ice cream scoop at Lonchi" className="hero-collage-main" />
+              <img src={bobaAsset.url} alt="Lonchi bubble tea with tapioca pearls" className="hero-collage-float" />
             </div>
           </Reveal>
         </div>
@@ -242,18 +315,21 @@ function Index() {
             </p>
           </Reveal>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {[
-              { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
-              { src: scoopsMenuAsset.url, alt: "Lonchi scoops and cones menu: ruby chocolate, strawberry, mango, chocolate, waffle with ice cream, vanilla cone, chocolate cone and mango cone with prices", label: "Scoops & cones" },
-              { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
-              { src: shakesMenuAsset.url, alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes", label: "Shakes, mojitos & frappes" },
-              { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
-              { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
-            ].map((board, index) => (
+            {menuBoards.map((board, index) => (
               <Reveal key={board.label} delay={index * 120}>
                 <figure className="soft-card overflow-hidden">
-                  <img src={board.src} alt={board.alt} loading="lazy" className="w-full" />
-                  <figcaption className="border-t border-border px-4 py-3 text-sm font-semibold">{board.label}</figcaption>
+                  <button
+                    type="button"
+                    onClick={() => setLightbox(board)}
+                    className="block w-full cursor-zoom-in"
+                    aria-label={`Enlarge ${board.label}`}
+                  >
+                    <img src={board.src} alt={board.alt} loading="lazy" className="w-full" />
+                  </button>
+                  <figcaption className="flex items-center justify-between border-t border-border px-4 py-3 text-sm font-semibold">
+                    {board.label}
+                    <span className="text-xs font-medium text-muted-foreground">Tap to enlarge</span>
+                  </figcaption>
                 </figure>
               </Reveal>
             ))}
@@ -493,6 +569,31 @@ function Index() {
           ))}
         </div>
       </nav>
+
+      {lightbox ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.label}
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm"
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+            className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-md"
+          >
+            <XIcon className="h-5 w-5" />
+          </button>
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            onClick={(event) => event.stopPropagation()}
+            className="max-h-[88vh] max-w-full rounded-2xl object-contain shadow-2xl"
+          />
+        </div>
+      ) : null}
     </main>
   );
 }
