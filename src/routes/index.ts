@@ -6,9 +6,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import homePage from "../site/index.html?raw";
 
 function renderHomePage() {
+  // The public backend URL and publishable key. In some builds only the
+  // non-prefixed names are present, so both spellings are checked.
+  const url =
+    process.env["VITE_SUPABASE_URL"] ?? process.env["SUPABASE_URL"] ?? "";
+  const key =
+    process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ??
+    process.env["SUPABASE_PUBLISHABLE_KEY"] ??
+    "";
+
   return homePage
-    .replace("__SUPABASE_URL__", process.env["VITE_SUPABASE_URL"] ?? "")
-    .replace("__SUPABASE_KEY__", process.env["VITE_SUPABASE_PUBLISHABLE_KEY"] ?? "");
+    .replace("__SUPABASE_URL__", url)
+    .replace("__SUPABASE_KEY__", key);
 }
 
 export const Route = createFileRoute("/")({
