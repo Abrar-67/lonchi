@@ -237,7 +237,6 @@ function Index() {
           <Reveal delay={120}>
             <div className="hero-collage">
               <img src={pistachioAsset.url} alt="Pistachio ice cream scoop at Lonchi" className="hero-collage-main" />
-              <img src={bobaAsset.url} alt="Lonchi bubble tea with tapioca pearls" className="hero-collage-float" />
             </div>
           </Reveal>
         </div>
