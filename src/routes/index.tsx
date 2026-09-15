@@ -315,18 +315,21 @@ function Index() {
             </p>
           </Reveal>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
-            {[
-              { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
-              { src: scoopsMenuAsset.url, alt: "Lonchi scoops and cones menu: ruby chocolate, strawberry, mango, chocolate, waffle with ice cream, vanilla cone, chocolate cone and mango cone with prices", label: "Scoops & cones" },
-              { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
-              { src: shakesMenuAsset.url, alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes", label: "Shakes, mojitos & frappes" },
-              { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
-              { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
-            ].map((board, index) => (
+            {menuBoards.map((board, index) => (
               <Reveal key={board.label} delay={index * 120}>
                 <figure className="soft-card overflow-hidden">
-                  <img src={board.src} alt={board.alt} loading="lazy" className="w-full" />
-                  <figcaption className="border-t border-border px-4 py-3 text-sm font-semibold">{board.label}</figcaption>
+                  <button
+                    type="button"
+                    onClick={() => setLightbox(board)}
+                    className="block w-full cursor-zoom-in"
+                    aria-label={`Enlarge ${board.label}`}
+                  >
+                    <img src={board.src} alt={board.alt} loading="lazy" className="w-full" />
+                  </button>
+                  <figcaption className="flex items-center justify-between border-t border-border px-4 py-3 text-sm font-semibold">
+                    {board.label}
+                    <span className="text-xs font-medium text-muted-foreground">Tap to enlarge</span>
+                  </figcaption>
                 </figure>
               </Reveal>
             ))}
