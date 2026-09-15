@@ -167,7 +167,26 @@ const moments = [
   { src: friendsAsset.url, alt: "Friends sharing Lonchi bubble tea together" },
 ];
 
+const menuBoards = [
+  { src: menuBoardAsset.url, alt: "Lonchi ice cream menu with flavours and prices", label: "Ice cream menu" },
+  {
+    src: scoopsMenuAsset.url,
+    alt: "Lonchi scoops and cones menu: ruby chocolate, strawberry, mango, chocolate, waffle with ice cream, vanilla cone, chocolate cone and mango cone with prices",
+    label: "Scoops & cones",
+  },
+  { src: bobaMenuAsset.url, alt: "Lonchi boba and milk tea menu with prices", label: "Boba & milk tea" },
+  {
+    src: shakesMenuAsset.url,
+    alt: "Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes",
+    label: "Shakes, mojitos & frappes",
+  },
+  { src: mcflurryMenuAsset.url, alt: "Lonchi McFlurry menu with six flavours", label: "McFlurry" },
+  { src: wafflesMenuAsset.url, alt: "Lonchi waffle menu with prices", label: "Waffles" },
+];
+
 function Index() {
+  const [lightbox, setLightbox] = useState<(typeof menuBoards)[number] | null>(null);
+
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-md">
