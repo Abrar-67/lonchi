@@ -503,7 +503,7 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border pb-28 pt-12 md:pb-12">
+      <footer className="border-t border-border pb-40 pt-12 md:pb-12">
         <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 sm:px-8 md:flex-row md:items-end">
           <div className="flex items-center gap-3">
             <img src={logoAsset.url} alt="Lonchi logo" className="h-12 w-12 rounded-full object-cover" />
@@ -540,7 +540,7 @@ function Index() {
       </footer>
 
       <nav aria-label="Mobile navigation" className="mobile-nav fixed inset-x-3 bottom-3 z-50 md:hidden">
-        <div className="grid grid-cols-5 px-2 py-2 text-[10px] font-bold">
+        <div className="grid grid-cols-5 px-1 py-1.5 text-[10px] font-bold">
           {[
             { href: "#top", label: "Home", Icon: Home },
             { href: "#serve", label: "Scoops", Icon: IceCreamCone },
@@ -551,7 +551,7 @@ function Index() {
             <a
               key={label}
               href={href}
-              className="flex min-h-12 flex-col items-center justify-center gap-1 text-muted-foreground transition-colors active:text-primary"
+              className="flex min-h-14 flex-col items-center justify-center gap-1 text-muted-foreground transition-colors active:text-primary"
             >
               <Icon className="h-5 w-5" strokeWidth={2.2} />
               {label}
