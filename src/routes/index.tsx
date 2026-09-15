@@ -69,7 +69,7 @@ const EMAIL = "lonchi.icecream@gmail.com";
 const PHONE = "01609-905226";
 const PHONE_URL = `tel:+880${PHONE.replace(/\D/g, "").slice(1)}`;
 const SITE_URL = "https://lonchi.lovable.app";
-const DAILY_SPECIAL = "Today's special: Purely Pistachio scoops & fresh mango boba";
+
 
 const LOCAL_BUSINESS_JSONLD = JSON.stringify({
   "@context": "https://schema.org",
@@ -208,12 +208,6 @@ function Index() {
         </div>
       </header>
 
-      <div className="special-strip">
-        <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-5 py-2.5 text-center text-xs font-bold sm:text-sm">
-          <Sparkles className="h-4 w-4 flex-none" />
-          <span>{DAILY_SPECIAL}</span>
-        </div>
-      </div>
 
       <section className="hero-band">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
@@ -232,11 +226,6 @@ function Index() {
                 Find the shop
               </a>
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
-            </div>
-          </Reveal>
-          <Reveal delay={120}>
-            <div className="hero-collage">
-              <img src={pistachioAsset.url} alt="Pistachio ice cream scoop at Lonchi" className="hero-collage-main" />
             </div>
           </Reveal>
         </div>
