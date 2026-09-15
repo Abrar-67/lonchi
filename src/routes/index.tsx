@@ -150,6 +150,7 @@ const serves = [
 const orderLinks = [
   { label: "foodpanda", note: "Delivery across Dhaka Cantonment", href: FOODPANDA_URL, icon: ShoppingBag },
   { label: "Pathao Food", note: "Order for delivery or pickup", href: PATHAO_URL, icon: ShoppingBag },
+  { label: "Foodi", note: "Order Lonchi on Foodi", href: FOODI_URL, icon: ShoppingBag },
 ];
 
 const socialLinks = [
