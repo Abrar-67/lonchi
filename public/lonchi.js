@@ -181,6 +181,11 @@ function startReviewForm() {
       return;
     }
 
+    if (!apiReady()) {
+      show("error", "Reviews are unavailable right now. Please try again later.");
+      return;
+    }
+
     const button = form.querySelector("button[type=submit]");
     button.disabled = true;
     button.textContent = "Sending…";
@@ -190,12 +195,12 @@ function startReviewForm() {
         method: "POST",
         headers: {
           apikey: REVIEWS_API.key,
-          Authorization: "Bearer " + REVIEWS_API.key,
           "Content-Type": "application/json",
+          Prefer: "return=minimal",
         },
         body: JSON.stringify({ name: name, rating: rating, comment: comment }),
       });
-      if (!response.ok) throw new Error("insert failed");
+      if (!response.ok) throw new Error(await response.text());
       form.reset();
       rating = 5;
       paintStars();
