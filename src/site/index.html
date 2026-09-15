@@ -70,6 +70,27 @@
   </head>
 
   <body id="top">
+
+    <!-- ================= Icon sprite (line icons, used via <use>) ============ -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 6.6a5.5 5.5 0 0 0-8.8-1.4l-.0.0a5.5 5.5 0 0 0-8.8 6.4c1.3 2.7 5 5.7 8.8 9 3.8-3.3 7.5-6.3 8.8-9a5.5 5.5 0 0 0 0-5Z"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="M18.5 15.5l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2Z"/></symbol>
+      <symbol id="i-cone" viewBox="0 0 24 24"><path d="M7 10h10l-4.1 10.4a1 1 0 0 1-1.8 0L7 10Z"/><path d="M17 7a5 5 0 0 0-10 0"/><path d="M17 7a2 2 0 0 1 0 4H7a2 2 0 0 1 0-4"/></symbol>
+      <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M15 8h-2a2 2 0 0 0-2 2v11"/><path d="M8.5 13h6"/><path d="M15 8V5.5A1.5 1.5 0 0 1 16.5 4H18"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.5 9.5l5 2.5-5 2.5v-5Z"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M4 4l16 16"/><path d="M20 4L4 20"/></symbol>
+      <symbol id="i-music" viewBox="0 0 24 24"><circle cx="7" cy="18" r="3"/><path d="M10 18V5l7-2v4l-7 2"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+      <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5 5-2Z"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3h3l1.5 4-2 1.5a10 10 0 0 0 5 5L15 11.5 19 13v3a2 2 0 0 1-2.2 2A15 15 0 0 1 4 5.2A2 2 0 0 1 6 3Z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 7h11"/><path d="M8 12h11"/><path d="M8 17h11"/><circle cx="4.6" cy="7" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="4.6" cy="17" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4l2.4 5 5.6.7-4 3.9 1 5.4-5-2.7-5 2.7 1-5.4-4-3.9 5.6-.7L12 4Z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></symbol>
+    </svg>
     <!-- ================= Header ================= -->
     <header class="site-header">
       <div class="header-inner">
@@ -92,6 +113,9 @@
 
     <!-- ================= Hero ================= -->
     <section class="hero">
+      <span class="blob blob-1" aria-hidden="true"></span>
+      <span class="blob blob-2" aria-hidden="true"></span>
+      <span class="blob blob-3" aria-hidden="true"></span>
       <div class="wrap reveal">
         <span class="chip">Ice cream • waffles • boba</span>
         <h1>Your ultimate sweet escape, now in <span class="gradient-text">Kachukhet</span>.</h1>
@@ -109,25 +133,38 @@
       </div>
     </section>
 
+
+    <!-- ================= Scrolling ticker ================= -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Scoops</span><span>•</span><span>Loaded waffles</span><span>•</span><span>Bubble tea</span><span>•</span>
+        <span>McFlurry</span><span>•</span><span>Milkshakes</span><span>•</span><span>Mojitos</span><span>•</span>
+        <span>Made with love</span><span>•</span><span>Pure hygiene</span><span>•</span><span>Served fresh</span><span>•</span>
+        <span>Scoops</span><span>•</span><span>Loaded waffles</span><span>•</span><span>Bubble tea</span><span>•</span>
+        <span>McFlurry</span><span>•</span><span>Milkshakes</span><span>•</span><span>Mojitos</span><span>•</span>
+        <span>Made with love</span><span>•</span><span>Pure hygiene</span><span>•</span><span>Served fresh</span><span>•</span>
+      </div>
+    </div>
+
     <!-- ================= Promises ================= -->
     <section class="section">
       <div class="wrap badge-row reveal">
         <div class="badge">
-          <span class="badge-icon">♥</span>
+          <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-heart"></use></svg></span>
           <div>
             <strong>Made with love</strong>
             <p class="muted small">Every dessert is prepared with care.</p>
           </div>
         </div>
         <div class="badge">
-          <span class="badge-icon">✦</span>
+          <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-sparkle"></use></svg></span>
           <div>
             <strong>Pure hygiene</strong>
             <p class="muted small">Clean prep, fresh ingredients, always.</p>
           </div>
         </div>
         <div class="badge">
-          <span class="badge-icon">🍦</span>
+          <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-cone"></use></svg></span>
           <div>
             <strong>Served fresh</strong>
             <p class="muted small">Scoops, waffles and boba made to order.</p>
@@ -226,7 +263,7 @@
           <figure class="card menu-board">
             <button type="button" data-zoom aria-label="Enlarge boba and milk tea menu">
               <img
-                src="/__l5e/assets-v1/d1988bec-801f-408f-a473-03a698d04569/lonchi-menu-boba.webp"
+                src="/__l5e/assets-v1/41c4c22c-8563-41bf-afb8-f596e749e082/lonchi-menu-boba-clean.webp"
                 alt="Lonchi boba and milk tea menu with prices"
                 loading="lazy"
               />
@@ -237,7 +274,7 @@
           <figure class="card menu-board">
             <button type="button" data-zoom aria-label="Enlarge shakes, mojitos and frappes menu">
               <img
-                src="/__l5e/assets-v1/9652be28-3fcc-48ca-8319-fae02ace758f/lonchi-menu-shakes.webp"
+                src="/__l5e/assets-v1/648933ae-95a6-4870-a9d0-5ab80e96558f/lonchi-menu-shakes-clean.webp"
                 alt="Lonchi drinks menu with smoothies, mojitos, frappes and milkshakes"
                 loading="lazy"
               />
@@ -248,7 +285,7 @@
           <figure class="card menu-board">
             <button type="button" data-zoom aria-label="Enlarge McFlurry menu">
               <img
-                src="/__l5e/assets-v1/873157ba-6c32-431e-94b7-42f26d62e741/lonchi-menu-mcflurry.webp"
+                src="/__l5e/assets-v1/961d35b6-3b74-4ab0-b68e-966d400c58eb/lonchi-menu-mcflurry-clean.webp"
                 alt="Lonchi McFlurry menu with six flavours"
                 loading="lazy"
               />
@@ -295,7 +332,7 @@
 
         <div class="grid grid-4 reveal" style="margin-top: 24px">
           <a class="tile" href="https://www.foodpanda.com.bd/restaurant/pv43/lonchi" target="_blank" rel="noreferrer">
-            <span class="badge-icon">🛍️</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-bag"></use></svg></span>
             <span><strong>foodpanda</strong><small>Delivery across Dhaka Cantonment</small></span>
           </a>
           <a
@@ -304,31 +341,31 @@
             target="_blank"
             rel="noreferrer"
           >
-            <span class="badge-icon">🛍️</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-bag"></use></svg></span>
             <span><strong>Pathao Food</strong><small>Order for delivery or pickup</small></span>
           </a>
           <a class="tile" href="https://foodibd.com/restaurant/13853" target="_blank" rel="noreferrer">
-            <span class="badge-icon">🛍️</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-bag"></use></svg></span>
             <span><strong>Foodi</strong><small>Order Lonchi on Foodi</small></span>
           </a>
           <a class="tile" href="https://www.instagram.com/lonchiicecream" target="_blank" rel="noreferrer">
-            <span class="badge-icon">📷</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-instagram"></use></svg></span>
             <span><strong>Instagram</strong><small>@lonchiicecream</small></span>
           </a>
           <a class="tile" href="https://www.facebook.com/lonchiicecream/" target="_blank" rel="noreferrer">
-            <span class="badge-icon">f</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-facebook"></use></svg></span>
             <span><strong>Facebook</strong><small>Lonchi Ice Cream</small></span>
           </a>
           <a class="tile" href="https://www.youtube.com/@Lonchiicecream" target="_blank" rel="noreferrer">
-            <span class="badge-icon">▶</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-youtube"></use></svg></span>
             <span><strong>YouTube</strong><small>@Lonchiicecream</small></span>
           </a>
           <a class="tile" href="https://x.com/Lonchiicecream" target="_blank" rel="noreferrer">
-            <span class="badge-icon">X</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-x"></use></svg></span>
             <span><strong>X</strong><small>@Lonchiicecream</small></span>
           </a>
           <a class="tile" href="https://www.tiktok.com/@lonchi365" target="_blank" rel="noreferrer">
-            <span class="badge-icon">♪</span>
+            <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-music"></use></svg></span>
             <span><strong>TikTok</strong><small>@lonchi365</small></span>
           </a>
         </div>
@@ -452,7 +489,7 @@
           </p>
 
           <div class="card hours" style="margin-top: 20px">
-            <h3>Opening hours</h3>
+            <h3 class="hours-title"><svg class="ico ico-purple" aria-hidden="true"><use href="#i-clock"></use></svg>Opening hours</h3>
             <ul style="margin-top: 10px">
               <li><span>Saturday</span><span class="muted">10:00 AM – 12:30 AM</span></li>
               <li><span>Sunday</span><span class="muted">10:00 AM – 12:00 AM</span></li>
@@ -466,7 +503,7 @@
 
           <div class="grid grid-2" style="margin-top: 20px">
             <a class="tile" href="https://maps.app.goo.gl/XKnokmdRqivz1zpm9" target="_blank" rel="noreferrer">
-              <span class="badge-icon">📍</span>
+              <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-pin"></use></svg></span>
               <span><strong>Google Maps</strong><small>Get directions</small></span>
             </a>
             <a
@@ -475,15 +512,15 @@
               target="_blank"
               rel="noreferrer"
             >
-              <span class="badge-icon">🧭</span>
+              <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-compass"></use></svg></span>
               <span><strong>Apple Maps</strong><small>Open on iPhone</small></span>
             </a>
             <a class="tile" href="tel:+8801609905226">
-              <span class="badge-icon">📞</span>
+              <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg></span>
               <span><strong>Call Lonchi</strong><small>01609-905226</small></span>
             </a>
             <a class="tile" href="mailto:lonchi.icecream@gmail.com">
-              <span class="badge-icon">✉️</span>
+              <span class="badge-icon"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></span>
               <span><strong>Email us</strong><small>lonchi.icecream@gmail.com</small></span>
             </a>
           </div>
@@ -522,11 +559,11 @@
 
     <!-- ================= Mobile bottom navigation ================= -->
     <nav class="mobile-nav" aria-label="Mobile navigation">
-      <a href="#top"><span>🏠</span>Home</a>
-      <a href="#serve"><span>🍦</span>Scoops</a>
-      <a href="#menu"><span>📋</span>Menu</a>
-      <a href="#reviews"><span>★</span>Reviews</a>
-      <a href="#visit"><span>📍</span>Visit</a>
+      <a href="#top"><svg class="ico nav-ico" aria-hidden="true"><use href="#i-home"></use></svg>Home</a>
+      <a href="#serve"><svg class="ico nav-ico" aria-hidden="true"><use href="#i-cone"></use></svg>Scoops</a>
+      <a href="#menu"><svg class="ico nav-ico" aria-hidden="true"><use href="#i-list"></use></svg>Menu</a>
+      <a href="#reviews"><svg class="ico nav-ico" aria-hidden="true"><use href="#i-star"></use></svg>Reviews</a>
+      <a href="#visit"><svg class="ico nav-ico" aria-hidden="true"><use href="#i-pin"></use></svg>Visit</a>
     </nav>
 
     <!-- ================= Menu image lightbox ================= -->
