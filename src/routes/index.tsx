@@ -68,6 +68,43 @@ const TIKTOK_URL = "https://www.tiktok.com/@lonchi365";
 const EMAIL = "lonchi.icecream@gmail.com";
 const PHONE = "01609-905226";
 const PHONE_URL = `tel:+880${PHONE.replace(/\D/g, "").slice(1)}`;
+const SITE_URL = "https://lonchi.lovable.app";
+const DAILY_SPECIAL = "Today's special: Purely Pistachio scoops & fresh mango boba";
+
+const LOCAL_BUSINESS_JSONLD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "IceCreamShop",
+  name: "Lonchi Ice Cream & More",
+  description:
+    "Ice cream scoops, loaded waffles, McFlurry, milkshakes and bubble tea in Kachukhet, Dhaka Cantonment.",
+  url: SITE_URL,
+  telephone: "+8801609905226",
+  email: EMAIL,
+  priceRange: "৳৳",
+  servesCuisine: ["Ice Cream", "Desserts", "Bubble Tea"],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, opposite Akram Masjid",
+    addressLocality: "Dhaka Cantonment",
+    addressRegion: "Dhaka",
+    postalCode: "1206",
+    addressCountry: "BD",
+  },
+  geo: { "@type": "GeoCoordinates", latitude: 23.793557, longitude: 90.389889 },
+  hasMap: MAPS_URL,
+  sameAs: [INSTAGRAM_URL, FACEBOOK_URL, YOUTUBE_URL, X_URL, TIKTOK_URL],
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+      opens: "10:00",
+      closes: "24:00",
+    },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Friday", opens: "10:30", closes: "12:30" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "24:00" },
+  ],
+});
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
