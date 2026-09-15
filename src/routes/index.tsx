@@ -19,6 +19,7 @@ import {
   Sparkles,
   Star,
   Twitter,
+  X as XIcon,
   Youtube,
 } from "lucide-react";
 
