@@ -569,6 +569,31 @@ function Index() {
           ))}
         </div>
       </nav>
+
+      {lightbox ? (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.label}
+          onClick={() => setLightbox(null)}
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-foreground/80 p-4 backdrop-blur-sm"
+        >
+          <button
+            type="button"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+            className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-foreground shadow-md"
+          >
+            <XIcon className="h-5 w-5" />
+          </button>
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            onClick={(event) => event.stopPropagation()}
+            className="max-h-[88vh] max-w-full rounded-2xl object-contain shadow-2xl"
+          />
+        </div>
+      ) : null}
     </main>
   );
 }
