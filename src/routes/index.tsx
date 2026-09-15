@@ -284,7 +284,7 @@ function Index() {
           <div className="stat-strip section-bleed mt-14">
             {[
               { big: "3", small: "ways to enjoy: scoops, waffles, boba" },
-              { big: "2", small: "delivery apps: foodpanda & Pathao" },
+              { big: "3", small: "delivery apps: foodpanda, Pathao & Foodi" },
               { big: "1", small: "shop, opposite Akram Masjid" },
             ].map((stat) => (
               <div key={stat.small}>
