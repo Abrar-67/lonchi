@@ -385,3 +385,129 @@ figure { margin: 0; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* 13. Line icons --------------------------------------------------------- */
+.icon-sprite { display: none; }
+
+.ico {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ico-purple { color: var(--purple); }
+.nav-ico { width: 22px; height: 22px; }
+
+.hours-title { display: flex; align-items: center; gap: 8px; }
+
+/* icons react to hover on their card */
+.badge-icon { transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease; }
+.badge:hover .badge-icon,
+.tile:hover .badge-icon {
+  transform: translateY(-2px) scale(1.08);
+  background: var(--purple);
+  color: var(--white);
+}
+
+/* 14. Extra motion ------------------------------------------------------- */
+
+/* soft floating colour blobs behind the hero */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { position: relative; z-index: 1; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(46px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: drift 14s ease-in-out infinite;
+}
+.blob-1 { width: 320px; height: 320px; top: -90px; right: -60px; background: rgba(147, 51, 234, 0.45); }
+.blob-2 { width: 260px; height: 260px; bottom: -110px; left: -70px; background: rgba(236, 72, 153, 0.4); animation-delay: -4s; }
+.blob-3 { width: 220px; height: 220px; top: 40%; right: 28%; background: rgba(59, 130, 246, 0.32); animation-delay: -8s; }
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, -28px, 0) scale(1.08); }
+}
+
+/* animated gradient on the highlighted headline word */
+.gradient-text {
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--blue), var(--purple));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shift 9s linear infinite;
+}
+@keyframes shift {
+  to { background-position: 300% 0; }
+}
+
+/* scrolling flavour ticker */
+.ticker {
+  overflow: hidden;
+  padding: 12px 0;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  color: var(--white);
+}
+.ticker-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  font-family: var(--font-head);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  animation: ticker 32s linear infinite;
+}
+@keyframes ticker {
+  to { transform: translateX(-50%); }
+}
+
+/* staggered reveals for items inside a revealed grid */
+.reveal.visible > * { animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+.reveal.visible > *:nth-child(2) { animation-delay: 0.08s; }
+.reveal.visible > *:nth-child(3) { animation-delay: 0.16s; }
+.reveal.visible > *:nth-child(4) { animation-delay: 0.24s; }
+.reveal.visible > *:nth-child(5) { animation-delay: 0.32s; }
+.reveal.visible > *:nth-child(6) { animation-delay: 0.4s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* photo zoom inside cards and the gallery */
+.card-photo, .gallery img, .menu-board img { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.card:hover .card-photo, .menu-board:hover img { transform: scale(1.05); }
+.gallery img:hover { transform: scale(1.05) rotate(-1deg); }
+.card, .gallery img { overflow: hidden; }
+
+/* buttons get a livelier press */
+.btn:active { transform: translateY(1px) scale(0.98); }
+
+/* logo bobs gently */
+.brand img { animation: bob 4.5s ease-in-out infinite; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* stat numbers pop when revealed */
+.stats.visible strong { animation: pop 0.6s cubic-bezier(0.22, 1.4, 0.4, 1) backwards; }
+.stats.visible div:nth-child(2) strong { animation-delay: 0.1s; }
+.stats.visible div:nth-child(3) strong { animation-delay: 0.2s; }
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: none; }
+}
+
+.star-picker button { transition: transform 0.15s ease, color 0.15s ease; }
+.star-picker button:hover { transform: scale(1.18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .blob, .ticker-track, .gradient-text, .brand img { animation: none; }
+  .reveal.visible > *, .stats.visible strong { animation: none; }
+  .card:hover .card-photo, .menu-board:hover img, .gallery img:hover { transform: none; }
+}
