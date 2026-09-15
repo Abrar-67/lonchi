@@ -69,7 +69,7 @@ const EMAIL = "lonchi.icecream@gmail.com";
 const PHONE = "01609-905226";
 const PHONE_URL = `tel:+880${PHONE.replace(/\D/g, "").slice(1)}`;
 const SITE_URL = "https://lonchi.lovable.app";
-const DAILY_SPECIAL = "Today's special: Purely Pistachio scoops & fresh mango boba";
+
 
 const LOCAL_BUSINESS_JSONLD = JSON.stringify({
   "@context": "https://schema.org",
