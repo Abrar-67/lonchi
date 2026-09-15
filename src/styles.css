@@ -92,6 +92,8 @@
   html { scroll-behavior: smooth; }
   body {
     margin: 0;
+    /* keep anchored sections clear of the sticky header when navigating */
+    scroll-padding-top: 6.5rem;
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
