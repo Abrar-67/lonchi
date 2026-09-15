@@ -1,0 +1,387 @@
+/* ==========================================================================
+   Lonchi Ice Cream & More — stylesheet
+   Sections: 1 variables  2 base  3 layout  4 header  5 hero  6 cards
+             7 menu  8 reviews  9 visit  10 footer  11 mobile nav  12 lightbox
+   ========================================================================== */
+
+/* 1. Variables ----------------------------------------------------------- */
+:root {
+  --purple: #9333ea;
+  --purple-dark: #7226c4;
+  --pink: #ec4899;
+  --blue: #3b82f6;
+  --white: #ffffff;
+
+  --bg: #fbf9ff;
+  --bg-soft: #f4efff;
+  --text: #241a35;
+  --text-muted: #6b6280;
+  --border: #e6dcf7;
+
+  --radius: 18px;
+  --shadow-soft: 0 10px 28px -18px rgba(60, 20, 110, 0.35);
+  --shadow-deep: 0 24px 50px -24px rgba(60, 20, 110, 0.4);
+
+  --font-head: "Sora", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+}
+
+/* 2. Base ---------------------------------------------------------------- */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.15; margin: 0; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.9rem); }
+h2 { font-size: clamp(1.7rem, 4vw, 2.4rem); }
+h3 { font-size: 1.2rem; }
+p { margin: 0; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.muted { color: var(--text-muted); }
+.small { font-size: 0.85rem; }
+.gradient-text {
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 3. Layout -------------------------------------------------------------- */
+.wrap { width: 100%; max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+.section { padding: 56px 0; }
+.section-soft { background: var(--bg-soft); }
+.stack > * + * { margin-top: 12px; }
+
+.grid { display: grid; gap: 18px; }
+@media (min-width: 700px) {
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* 4. Header -------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251, 249, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 20px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; }
+.brand img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+
+.desktop-nav { display: none; align-items: center; gap: 22px; font-weight: 600; font-size: 0.92rem; }
+.desktop-nav a:hover { color: var(--purple); }
+@media (min-width: 900px) { .desktop-nav { display: flex; } }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.btn-primary { background: var(--purple); color: var(--white); }
+.btn-primary:hover { background: var(--purple-dark); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.btn-outline { border-color: var(--purple); color: var(--purple); background: transparent; }
+.btn-outline:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+
+/* 5. Hero ---------------------------------------------------------------- */
+.hero {
+  background:
+    radial-gradient(45rem 22rem at 90% -10%, rgba(59, 130, 246, 0.16), transparent 70%),
+    radial-gradient(40rem 22rem at 0% 110%, rgba(236, 72, 153, 0.16), transparent 70%),
+    var(--bg-soft);
+  padding: 52px 0 60px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--purple);
+  color: var(--white);
+  padding: 7px 15px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.hero h1 { margin-top: 18px; max-width: 34ch; }
+.hero p { margin-top: 18px; max-width: 56ch; font-size: 1.05rem; color: var(--text-muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* 6. Cards --------------------------------------------------------------- */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-deep); }
+.card-body { padding: 18px; }
+.card-photo { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; }
+
+.badge-row { display: grid; gap: 14px; }
+@media (min-width: 700px) { .badge-row { grid-template-columns: repeat(3, 1fr); } }
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.badge-icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--purple);
+  font-size: 1.1rem;
+}
+
+.stats {
+  display: grid;
+  gap: 20px;
+  margin-top: 44px;
+  padding: 34px 20px;
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
+  text-align: center;
+}
+@media (min-width: 700px) { .stats { grid-template-columns: repeat(3, 1fr); } }
+.stats strong { display: block; font-family: var(--font-head); font-size: 2rem; color: var(--purple); }
+
+/* Link tiles (order, social, visit) */
+.tile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 74px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+.tile:hover { border-color: var(--purple); transform: translateY(-2px); box-shadow: var(--shadow-soft); }
+.tile strong { display: block; font-size: 0.95rem; }
+.tile small { display: block; color: var(--text-muted); font-size: 0.78rem; }
+
+.pay-card {
+  padding: 24px;
+  border-radius: var(--radius);
+  background: linear-gradient(120deg, rgba(236, 72, 153, 0.12), rgba(147, 51, 234, 0.1));
+  border: 1px solid var(--border);
+}
+.pay-methods { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.pay-methods span {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.gallery img { aspect-ratio: 1 / 1; width: 100%; object-fit: cover; border-radius: 16px; }
+
+/* 7. Menu ---------------------------------------------------------------- */
+.menu-board button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.menu-board figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+figure { margin: 0; }
+
+/* 8. Reviews ------------------------------------------------------------- */
+.review-form { padding: 20px; }
+.review-form label { display: block; font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; }
+.review-form input,
+.review-form textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  font: inherit;
+  font-size: 0.92rem;
+  background: var(--white);
+  color: var(--text);
+}
+.review-form input:focus,
+.review-form textarea:focus { outline: 2px solid rgba(147, 51, 234, 0.35); border-color: var(--purple); }
+.review-form textarea { resize: vertical; min-height: 110px; }
+.review-form + * { margin-top: 0; }
+
+.star-picker { display: flex; gap: 6px; }
+.star-picker button {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 1.7rem;
+  line-height: 1;
+  color: #d5cbe6;
+  padding: 2px;
+}
+.star-picker button.on { color: var(--purple); }
+
+.stars { color: var(--purple); letter-spacing: 2px; font-size: 0.95rem; }
+.stars .off { color: #d5cbe6; }
+
+.review-list { display: grid; gap: 14px; align-content: start; }
+@media (min-width: 700px) { .review-list { grid-template-columns: repeat(2, 1fr); } }
+.review-card { padding: 18px; }
+.review-card header { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.form-status { font-size: 0.88rem; font-weight: 600; }
+.form-status.ok { color: var(--purple); }
+.form-status.error { color: #d02c4f; }
+
+.reviews-layout { display: grid; gap: 20px; margin-top: 26px; }
+@media (min-width: 1000px) { .reviews-layout { grid-template-columns: 340px 1fr; } }
+
+/* 9. Visit --------------------------------------------------------------- */
+.visit-layout { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 1000px) { .visit-layout { grid-template-columns: 1fr 1fr; } }
+.hours { padding: 18px; }
+.hours li { display: flex; justify-content: space-between; gap: 16px; font-size: 0.9rem; padding: 3px 0; }
+
+/* 10. Footer ------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0 150px;
+}
+@media (min-width: 900px) { .site-footer { padding-bottom: 40px; } }
+.footer-inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; align-items: flex-end; }
+.footer-brand { display: flex; align-items: center; gap: 12px; }
+.footer-brand img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+.social-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.social-row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.social-row a:hover { background: var(--purple); color: var(--white); }
+
+/* 11. Mobile bottom nav -------------------------------------------------- */
+.mobile-nav {
+  position: fixed;
+  z-index: 50;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 6px 4px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-deep);
+}
+.mobile-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 56px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+.mobile-nav a span { font-size: 1.1rem; line-height: 1; }
+.mobile-nav a:active { color: var(--purple); }
+@media (min-width: 900px) { .mobile-nav { display: none; } }
+
+/* 12. Lightbox ----------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(30, 15, 50, 0.85);
+}
+.lightbox.open { display: flex; }
+.lightbox img { max-height: 88vh; border-radius: 16px; object-fit: contain; }
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Scroll reveal animation */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
