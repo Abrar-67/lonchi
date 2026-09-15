@@ -208,12 +208,19 @@ function Index() {
         </div>
       </header>
 
+      <div className="special-strip">
+        <div className="mx-auto flex max-w-6xl items-center justify-center gap-2 px-5 py-2.5 text-center text-xs font-bold sm:text-sm">
+          <Sparkles className="h-4 w-4 flex-none" />
+          <span>{DAILY_SPECIAL}</span>
+        </div>
+      </div>
+
       <section className="hero-band">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-2 lg:gap-16 lg:py-24">
           <Reveal>
             <span className="chip">Ice cream • waffles • boba</span>
             <h1 className="mt-5 max-w-xl font-display text-[clamp(2.6rem,6vw,4rem)] font-semibold leading-[1.12]">
-              Your ultimate sweet escape, now in Kachukhet.
+              Your ultimate sweet escape, now in <span className="text-gradient">Kachukhet</span>.
             </h1>
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
               Dive into delightful scoops, dreamy swirls and custom-made creations. We are always sure to make the ice
@@ -225,6 +232,12 @@ function Index() {
                 Find the shop
               </a>
               <a href="#menu" className="pill-btn pill-outline">See the menu</a>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="hero-collage">
+              <img src={pistachioAsset.url} alt="Pistachio ice cream scoop at Lonchi" className="hero-collage-main" />
+              <img src={bobaAsset.url} alt="Lonchi bubble tea with tapioca pearls" className="hero-collage-float" />
             </div>
           </Reveal>
         </div>
