@@ -511,3 +511,6 @@ figure { margin: 0; }
   .reveal.visible > *, .stats.visible strong { animation: none; }
   .card:hover .card-photo, .menu-board:hover img, .gallery img:hover { transform: none; }
 }
+
+/* menu boards keep their own height instead of stretching to the row */
+.menu-board { align-self: start; }
