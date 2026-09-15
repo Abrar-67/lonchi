@@ -121,13 +121,19 @@ function escapeHtml(text) {
   });
 }
 
+function apiReady() {
+  return Boolean(REVIEWS_API && REVIEWS_API.url && REVIEWS_API.key);
+}
+
 async function loadReviews() {
+  if (!apiReady()) return;
+
   const url =
     REVIEWS_API.url +
     "/rest/v1/reviews?select=id,name,rating,comment,created_at&order=created_at.desc&limit=30";
   try {
     const response = await fetch(url, {
-      headers: { apikey: REVIEWS_API.key, Authorization: "Bearer " + REVIEWS_API.key },
+      headers: { apikey: REVIEWS_API.key },
     });
     if (!response.ok) throw new Error("request failed");
     renderReviews(await response.json());
