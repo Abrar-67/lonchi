@@ -514,3 +514,37 @@ figure { margin: 0; }
 
 /* menu boards keep their own height instead of stretching to the row */
 .menu-board { align-self: start; }
+
+/* ==========================================================================
+   15. Live Google reviews
+   ========================================================================== */
+.google-review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.google-review {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.google-review .who {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.google-review .who img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.google-review .who .name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
