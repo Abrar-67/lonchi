@@ -221,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startLightbox();
   startReviewForm();
   loadReviews();
+  loadGoogleReviews();
 });
 
 /* 4. Live Google reviews --------------------------------------------------- */
