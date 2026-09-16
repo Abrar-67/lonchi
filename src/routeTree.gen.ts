@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiPublicGoogleReviewsRouteImport } from './routes/api/public/google-reviews'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGoogleReviewsRoute = ApiPublicGoogleReviewsRouteImport.update({
+  id: '/api/public/google-reviews',
+  path: '/api/public/google-reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/public/google-reviews': typeof ApiPublicGoogleReviewsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/public/google-reviews': typeof ApiPublicGoogleReviewsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/public/google-reviews': typeof ApiPublicGoogleReviewsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/public/google-reviews'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/public/google-reviews'
+  id: '__root__' | '/' | '/api/public/google-reviews'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiPublicGoogleReviewsRoute: typeof ApiPublicGoogleReviewsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/google-reviews': {
+      id: '/api/public/google-reviews'
+      path: '/api/public/google-reviews'
+      fullPath: '/api/public/google-reviews'
+      preLoaderRoute: typeof ApiPublicGoogleReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiPublicGoogleReviewsRoute: ApiPublicGoogleReviewsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
