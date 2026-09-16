@@ -253,7 +253,7 @@ function renderGoogleReviews(data) {
   list.innerHTML = data.reviews
     .map(function (review) {
       const avatar = review.photo
-        ? '<img src="' + escapeHtml(review.photo) + '" alt="" loading="lazy" />'
+        ? '<img src="' + escapeHtml(review.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />'
         : "";
       return `
         <article class="card google-review">
