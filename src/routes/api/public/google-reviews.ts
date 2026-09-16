@@ -63,14 +63,19 @@ async function loadReviews(): Promise<Payload> {
     rating: place.rating ?? null,
     total: place.userRatingCount ?? null,
     mapsUrl: place.googleMapsUri ?? null,
-    reviews: (place.reviews ?? []).map((review) => ({
-      author: review.authorAttribution?.displayName ?? "Google user",
-      photo: review.authorAttribution?.photoUri ?? null,
-      rating: review.rating ?? 0,
-      text: review.text?.text ?? review.originalText?.text ?? "",
-      when: review.relativePublishTimeDescription ?? "",
-      url: review.googleMapsUri ?? null,
-    })),
+    // The star average and total count above stay exactly as Google reports
+    // them. Only the quoted review cards are limited to 4 and 5 star reviews.
+    reviews: (place.reviews ?? [])
+      .map((review) => ({
+        author: review.authorAttribution?.displayName ?? "Google user",
+        photo: review.authorAttribution?.photoUri ?? null,
+        rating: review.rating ?? 0,
+        text: review.text?.text ?? review.originalText?.text ?? "",
+        when: review.relativePublishTimeDescription ?? "",
+        url: review.googleMapsUri ?? null,
+      }))
+      .filter((review) => review.rating >= 4)
+      .sort((a, b) => b.rating - a.rating),
   };
 }
 
