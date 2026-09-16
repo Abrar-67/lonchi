@@ -221,4 +221,65 @@ document.addEventListener("DOMContentLoaded", () => {
   startLightbox();
   startReviewForm();
   loadReviews();
+  loadGoogleReviews();
 });
+
+/* 4. Live Google reviews --------------------------------------------------- */
+function renderGoogleReviews(data) {
+  const list = document.getElementById("google-review-list");
+  const summary = document.getElementById("google-summary");
+  const link = document.getElementById("google-review-link");
+  if (!list) return;
+
+  if (link && data.mapsUrl) link.href = data.mapsUrl;
+
+  if (summary && data.rating) {
+    summary.innerHTML =
+      starsMarkup(Math.round(data.rating)) +
+      ' <span class="small muted">' +
+      data.rating.toFixed(1) +
+      " from " +
+      data.total +
+      " Google rating" +
+      (data.total === 1 ? "" : "s") +
+      "</span>";
+  }
+
+  if (!data.reviews || data.reviews.length === 0) {
+    list.innerHTML = '<p class="muted small">No Google reviews to show yet.</p>';
+    return;
+  }
+
+  list.innerHTML = data.reviews
+    .map(function (review) {
+      const avatar = review.photo
+        ? '<img src="' + escapeHtml(review.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />'
+        : "";
+      return `
+        <article class="card google-review">
+          <div class="who">
+            ${avatar}
+            <div>
+              <div class="name">${escapeHtml(review.author)}</div>
+              <div class="muted small">${escapeHtml(review.when)}</div>
+            </div>
+          </div>
+          ${starsMarkup(review.rating)}
+          <p class="muted" style="white-space:pre-line">${escapeHtml(review.text)}</p>
+        </article>`;
+    })
+    .join("");
+}
+
+async function loadGoogleReviews() {
+  const list = document.getElementById("google-review-list");
+  try {
+    const response = await fetch("/api/public/google-reviews");
+    if (!response.ok) throw new Error("request failed");
+    renderGoogleReviews(await response.json());
+  } catch (error) {
+    if (list) {
+      list.innerHTML = '<p class="muted small">Google reviews could not be loaded right now.</p>';
+    }
+  }
+}
