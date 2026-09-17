@@ -220,6 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
   startScrollReveal();
   startLightbox();
   startReviewForm();
+  startImageDownloads();
+  startPdfDownload();
   loadReviews();
   loadGoogleReviews();
 });
@@ -282,4 +284,138 @@ async function loadGoogleReviews() {
       list.innerHTML = '<p class="muted small">Google reviews could not be loaded right now.</p>';
     }
   }
+}
+
+/* 5. Menu downloads -------------------------------------------------------- */
+
+/* Collect every menu board on the page with its image and caption. */
+function menuBoards() {
+  return Array.from(document.querySelectorAll("#menu .menu-board")).map((figure) => {
+    const image = figure.querySelector("img");
+    const link = figure.querySelector(".dl-link");
+    return {
+      src: image ? image.src : "",
+      title: image ? (image.alt || "Lonchi menu") : "Lonchi menu",
+      fileName: link ? link.getAttribute("data-download") : "lonchi-menu",
+    };
+  });
+}
+
+/* Point each "Download" link at its own picture, with a friendly file name. */
+function startImageDownloads() {
+  document.querySelectorAll("#menu .menu-board").forEach((figure) => {
+    const image = figure.querySelector("img");
+    const link = figure.querySelector(".dl-link");
+    if (!image || !link) return;
+
+    const extension = (image.src.split(".").pop() || "webp").split("?")[0];
+    link.href = image.src;
+    link.setAttribute("download", link.getAttribute("data-download") + "." + extension);
+  });
+}
+
+/* Read an image file and hand back a data URL plus its natural size. */
+function readImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.crossOrigin = "anonymous";
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+      canvas.getContext("2d").drawImage(image, 0, 0);
+      resolve({
+        dataUrl: canvas.toDataURL("image/jpeg", 0.92),
+        width: canvas.width,
+        height: canvas.height,
+      });
+    };
+    image.onerror = () => reject(new Error("could not read " + src));
+    image.src = src;
+  });
+}
+
+/* Build a one-board-per-page PDF of every menu picture. */
+function startPdfDownload() {
+  const button = document.getElementById("download-menu-pdf");
+  const status = document.getElementById("pdf-status");
+  if (!button) return;
+
+  function show(text) {
+    if (status) status.textContent = text;
+  }
+
+  button.addEventListener("click", async () => {
+    const maker = window.jspdf && window.jspdf.jsPDF;
+    if (!maker) {
+      show("The PDF tool is still loading — please try again in a moment.");
+      return;
+    }
+
+    button.disabled = true;
+    const label = button.innerHTML;
+    show("Preparing your PDF…");
+
+    try {
+      const boards = menuBoards();
+      const pictures = [];
+      for (const board of boards) {
+        pictures.push({ board: board, picture: await readImage(board.src) });
+      }
+
+      const margin = 12;
+      let pdf = null;
+
+      pictures.forEach((item, index) => {
+        // Wide boards get a landscape page so they fill it nicely.
+        const wide = item.picture.width > item.picture.height;
+        const orientation = wide ? "landscape" : "portrait";
+        const pageWidth = wide ? 297 : 210;
+        const pageHeight = wide ? 210 : 297;
+
+        if (index === 0) {
+          pdf = new maker({ unit: "mm", format: "a4", orientation: orientation });
+        } else {
+          pdf.addPage("a4", orientation);
+        }
+
+        pdf.setFontSize(16);
+        pdf.text("Lonchi Ice Cream & More", margin, margin + 4);
+        pdf.setFontSize(10);
+        pdf.text(item.board.title, margin, margin + 11, { maxWidth: pageWidth - margin * 2 });
+
+        const top = margin + 18;
+        const maxWidth = pageWidth - margin * 2;
+        const maxHeight = pageHeight - top - margin - 8;
+        const scale = Math.min(maxWidth / item.picture.width, maxHeight / item.picture.height);
+        const width = item.picture.width * scale;
+        const height = item.picture.height * scale;
+
+        pdf.addImage(
+          item.picture.dataUrl,
+          "JPEG",
+          (pageWidth - width) / 2,
+          top + (maxHeight - height) / 2,
+          width,
+          height
+        );
+
+        pdf.setFontSize(9);
+        pdf.text(
+          "CB 29 Kachukhet, Muslim Modern School Road, Dhaka Cantonment · 01609-905226",
+          margin,
+          pageHeight - margin
+        );
+      });
+
+
+      pdf.save("lonchi-full-menu.pdf");
+      show("Saved as lonchi-full-menu.pdf");
+    } catch (error) {
+      show("Sorry, the PDF could not be made. Please try again.");
+    } finally {
+      button.disabled = false;
+      button.innerHTML = label;
+    }
+  });
 }
