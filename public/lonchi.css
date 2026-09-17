@@ -548,3 +548,31 @@ figure { margin: 0; }
   font-weight: 600;
   font-size: 0.95rem;
 }
+
+/* 13. Menu downloads ------------------------------------------------------ */
+.menu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+#download-menu-pdf[disabled] { opacity: 0.6; cursor: progress; }
+
+.dl-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  background: #fff;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.dl-link:hover { background: var(--soft); transform: translateY(-1px); }
+.dl-link .ico { width: 15px; height: 15px; }
