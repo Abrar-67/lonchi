@@ -569,10 +569,10 @@ figure { margin: 0; }
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 700;
-  color: var(--brand);
+  color: var(--purple-dark);
   text-decoration: none;
-  background: #fff;
+  background: var(--white);
   transition: background 0.2s ease, transform 0.2s ease;
 }
-.dl-link:hover { background: var(--soft); transform: translateY(-1px); }
+.dl-link:hover { background: var(--bg-soft); transform: translateY(-1px); }
 .dl-link .ico { width: 15px; height: 15px; }
