@@ -357,31 +357,48 @@ function startPdfDownload() {
     show("Preparing your PDF…");
 
     try {
-      const pdf = new maker({ unit: "mm", format: "a4", orientation: "portrait" });
-      const pageWidth = 210;
-      const pageHeight = 297;
-      const margin = 12;
       const boards = menuBoards();
+      const pictures = [];
+      for (const board of boards) {
+        pictures.push({ board: board, picture: await readImage(board.src) });
+      }
 
-      for (let index = 0; index < boards.length; index++) {
-        const board = boards[index];
-        const picture = await readImage(board.src);
+      const margin = 12;
+      let pdf = null;
 
-        if (index > 0) pdf.addPage();
+      pictures.forEach((item, index) => {
+        // Wide boards get a landscape page so they fill it nicely.
+        const wide = item.picture.width > item.picture.height;
+        const orientation = wide ? "landscape" : "portrait";
+        const pageWidth = wide ? 297 : 210;
+        const pageHeight = wide ? 210 : 297;
+
+        if (index === 0) {
+          pdf = new maker({ unit: "mm", format: "a4", orientation: orientation });
+        } else {
+          pdf.addPage("a4", orientation);
+        }
 
         pdf.setFontSize(16);
         pdf.text("Lonchi Ice Cream & More", margin, margin + 4);
         pdf.setFontSize(10);
-        pdf.text(board.title, margin, margin + 11, { maxWidth: pageWidth - margin * 2 });
+        pdf.text(item.board.title, margin, margin + 11, { maxWidth: pageWidth - margin * 2 });
 
         const top = margin + 18;
         const maxWidth = pageWidth - margin * 2;
         const maxHeight = pageHeight - top - margin - 8;
-        const scale = Math.min(maxWidth / picture.width, maxHeight / picture.height);
-        const width = picture.width * scale;
-        const height = picture.height * scale;
+        const scale = Math.min(maxWidth / item.picture.width, maxHeight / item.picture.height);
+        const width = item.picture.width * scale;
+        const height = item.picture.height * scale;
 
-        pdf.addImage(picture.dataUrl, "JPEG", (pageWidth - width) / 2, top, width, height);
+        pdf.addImage(
+          item.picture.dataUrl,
+          "JPEG",
+          (pageWidth - width) / 2,
+          top + (maxHeight - height) / 2,
+          width,
+          height
+        );
 
         pdf.setFontSize(9);
         pdf.text(
@@ -389,7 +406,8 @@ function startPdfDownload() {
           margin,
           pageHeight - margin
         );
-      }
+      });
+
 
       pdf.save("lonchi-full-menu.pdf");
       show("Saved as lonchi-full-menu.pdf");
