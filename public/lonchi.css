@@ -576,3 +576,189 @@ figure { margin: 0; }
 }
 .dl-link:hover { background: var(--bg-soft); transform: translateY(-1px); }
 .dl-link .ico { width: 15px; height: 15px; }
+
+/* 16. Apple-inspired motion system --------------------------------------- */
+:root {
+  --scroll-progress: 0;
+  --motion-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A thin progress line gives long pages a quiet sense of position. */
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--blue));
+  transform: scaleX(var(--scroll-progress));
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.site-header {
+  transition: background 0.45s var(--motion-smooth), box-shadow 0.45s var(--motion-smooth),
+    border-color 0.45s var(--motion-smooth);
+}
+.site-header.is-scrolled {
+  background: color-mix(in oklab, var(--bg) 82%, transparent);
+  box-shadow: 0 14px 40px -30px color-mix(in oklab, var(--text) 45%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--border) 65%, transparent);
+}
+.site-header.is-scrolled .header-inner { padding-top: 7px; padding-bottom: 7px; }
+.header-inner { transition: padding 0.45s var(--motion-smooth); }
+
+/* Hero content travels at a different speed, creating restrained depth. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    color-mix(in oklab, var(--white) 45%, transparent) 48%,
+    transparent 74%
+  );
+  transform: translateX(calc(-115% + var(--hero-progress, 0) * 150%));
+  pointer-events: none;
+  opacity: 0.55;
+}
+.hero .wrap {
+  transform: translate3d(0, var(--hero-shift, 0px), 0);
+  will-change: transform;
+}
+.hero .chip { animation: hero-chip-in 0.7s 0.08s var(--motion-spring) both; }
+.hero h1 { animation: hero-copy-in 0.9s 0.14s var(--motion-spring) both; }
+.hero p { animation: hero-copy-in 0.9s 0.24s var(--motion-spring) both; }
+.hero-actions { animation: hero-copy-in 0.9s 0.34s var(--motion-spring) both; }
+@keyframes hero-chip-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.92); filter: blur(7px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes hero-copy-in {
+  from { opacity: 0; transform: translateY(30px); filter: blur(9px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* Tactile controls settle like a soft spring instead of snapping. */
+.btn, .dl-link, .social-row a, .desktop-nav a, .mobile-nav a {
+  transition-timing-function: var(--motion-spring);
+  transition-duration: 0.35s;
+}
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, color-mix(in oklab, var(--white) 36%, transparent), transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.7s var(--motion-smooth);
+  pointer-events: none;
+}
+.btn:hover::after { transform: translateX(130%); }
+
+/* Pointer-aware depth. Mobile keeps the same surfaces without expensive tilt. */
+.motion-surface {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
+  transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--motion-spring), box-shadow 0.5s var(--motion-smooth),
+    border-color 0.35s ease;
+  will-change: transform;
+}
+.motion-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(
+    300px circle at var(--pointer-x) var(--pointer-y),
+    color-mix(in oklab, var(--white) 38%, transparent),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.motion-surface:hover::after { opacity: 1; }
+.motion-surface > * { position: relative; z-index: 1; }
+.card.motion-surface:hover {
+  box-shadow: 0 28px 65px -34px color-mix(in oklab, var(--purple) 38%, transparent);
+}
+
+/* Scroll entrances use blur and scale for an Apple-like material feel. */
+.motion-ready .reveal {
+  opacity: 0;
+  transform: translateY(34px) scale(0.985);
+  filter: blur(8px);
+  transition: opacity 0.9s var(--motion-smooth), transform 0.9s var(--motion-smooth),
+    filter 0.8s var(--motion-smooth);
+}
+.motion-ready .reveal.visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+.motion-ready .reveal.visible > * { animation-duration: 0.8s; animation-timing-function: var(--motion-spring); }
+
+.ticker { transform: translateZ(0); }
+.ticker-track { animation-duration: 38s; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+/* The mobile bar behaves like a compact translucent dock. */
+.mobile-nav {
+  transition: transform 0.45s var(--motion-spring), box-shadow 0.45s var(--motion-smooth),
+    background 0.45s ease;
+}
+.mobile-nav a { position: relative; transition-property: color, transform, background; }
+.mobile-nav a::before {
+  content: "";
+  position: absolute;
+  inset: 4px 8px;
+  z-index: -1;
+  border-radius: 14px;
+  background: var(--bg-soft);
+  opacity: 0;
+  transform: scale(0.72);
+  transition: opacity 0.35s ease, transform 0.45s var(--motion-spring);
+}
+.mobile-nav a.active { color: var(--purple); transform: translateY(-2px); }
+.mobile-nav a.active::before { opacity: 1; transform: scale(1); }
+.mobile-nav a.active .ico { animation: nav-icon-pop 0.45s var(--motion-spring); }
+@keyframes nav-icon-pop {
+  50% { transform: scale(1.18) translateY(-1px); }
+}
+
+/* Lightbox opens as one continuous zoom rather than appearing abruptly. */
+.lightbox { display: flex; visibility: hidden; opacity: 0; transition: opacity 0.35s ease, visibility 0.35s; }
+.lightbox.open { visibility: visible; opacity: 1; }
+.lightbox img { transform: scale(0.9) translateY(18px); opacity: 0; transition: transform 0.55s var(--motion-spring), opacity 0.35s ease; }
+.lightbox.open img { transform: none; opacity: 1; }
+
+@media (max-width: 699px) {
+  .hero { padding-top: 42px; }
+  .motion-surface { transform: none; will-change: auto; }
+  .motion-surface::after { display: none; }
+  .mobile-nav { background: color-mix(in oklab, var(--white) 88%, transparent); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .chip, .hero h1, .hero p, .hero-actions, .mobile-nav a.active .ico { animation: none; }
+  .hero .wrap, .motion-surface { transform: none; }
+  .site-header::after { transition: none; }
+  .motion-ready .reveal, .motion-ready .reveal.visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+  .btn::after, .motion-surface::after { display: none; }
+  .lightbox, .lightbox img { transition: none; }
+}
