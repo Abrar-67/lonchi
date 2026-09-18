@@ -762,3 +762,50 @@ figure { margin: 0; }
   .btn::after, .motion-surface::after { display: none; }
   .lightbox, .lightbox img { transition: none; }
 }
+
+/* ================= 17. Typed price list ================================== */
+.price-list {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+@media (min-width: 700px) {
+  .price-list { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1100px) {
+  .price-list { grid-template-columns: repeat(3, 1fr); }
+}
+.price-card {
+  padding: 22px 22px 14px;
+  display: flex;
+  flex-direction: column;
+}
+.price-card h4 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.price-card ul {
+  list-style: none;
+  margin: 12px 0 4px;
+  padding: 0;
+}
+.price-card li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 0.92rem;
+}
+.price-card li:last-child {
+  border-bottom: none;
+}
+.price-card li span {
+  color: var(--muted);
+}
+.price-card li strong {
+  white-space: nowrap;
+  font-weight: 800;
+}
