@@ -26,6 +26,88 @@ function startScrollReveal() {
   items.forEach((el) => observer.observe(el));
 }
 
+/* Apple-inspired motion: smooth depth, scroll progress and tactile cards. */
+function startPremiumMotion() {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const header = document.querySelector(".site-header");
+  const hero = document.querySelector(".hero");
+  const heroContent = hero && hero.querySelector(".wrap");
+  const motionCards = document.querySelectorAll(
+    ".card, .badge, .tile, .pay-card, .stats"
+  );
+  let scrollFrame = 0;
+
+  document.documentElement.classList.add("motion-ready");
+
+  function updateScrollMotion() {
+    scrollFrame = 0;
+    const top = window.scrollY;
+    const pageLength = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = pageLength > 0 ? Math.min(top / pageLength, 1) : 0;
+    document.documentElement.style.setProperty("--scroll-progress", String(progress));
+
+    if (header) header.classList.toggle("is-scrolled", top > 18);
+    if (!reducedMotion.matches && hero && heroContent) {
+      const heroProgress = Math.min(top / Math.max(hero.offsetHeight, 1), 1);
+      hero.style.setProperty("--hero-progress", String(heroProgress));
+      heroContent.style.setProperty("--hero-shift", Math.round(top * 0.12) + "px");
+    }
+  }
+
+  function queueScrollMotion() {
+    if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScrollMotion);
+  }
+
+  motionCards.forEach((card) => {
+    card.classList.add("motion-surface");
+    card.addEventListener("pointermove", (event) => {
+      if (reducedMotion.matches || event.pointerType === "touch") return;
+      const bounds = card.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      card.style.setProperty("--pointer-x", x * 100 + "%");
+      card.style.setProperty("--pointer-y", y * 100 + "%");
+      card.style.setProperty("--tilt-x", (0.5 - y) * 4 + "deg");
+      card.style.setProperty("--tilt-y", (x - 0.5) * 4 + "deg");
+    });
+    card.addEventListener("pointerleave", () => {
+      card.style.removeProperty("--tilt-x");
+      card.style.removeProperty("--tilt-y");
+    });
+  });
+
+  window.addEventListener("scroll", queueScrollMotion, { passive: true });
+  window.addEventListener("resize", queueScrollMotion, { passive: true });
+  reducedMotion.addEventListener("change", updateScrollMotion);
+  updateScrollMotion();
+}
+
+/* Keep mobile navigation in sync with the section currently on screen. */
+function startActiveNavigation() {
+  const links = Array.from(document.querySelectorAll(".mobile-nav a"));
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+  if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach((link) => {
+        const active = link.getAttribute("href") === "#" + visible.target.id;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+    },
+    { rootMargin: "-25% 0px -55%", threshold: [0, 0.2, 0.6] }
+  );
+  sections.forEach((section) => observer.observe(section));
+}
+
 /* 2. Menu board lightbox -------------------------------------------------- */
 function startLightbox() {
   const box = document.getElementById("lightbox");
@@ -218,6 +300,8 @@ function startReviewForm() {
 /* Start everything once the page is ready ---------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   startScrollReveal();
+  startPremiumMotion();
+  startActiveNavigation();
   startLightbox();
   startReviewForm();
   startImageDownloads();
