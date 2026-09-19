@@ -864,3 +864,37 @@ figure { margin: 0; }
     transform: none;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   18. Open now / Closed badge (opening hours card)
+--------------------------------------------------------------------------- */
+.open-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: 0.6rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.open-status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.open-status.is-open {
+  color: oklch(0.55 0.18 150);
+  background: oklch(0.55 0.18 150 / 0.12);
+}
+
+.open-status.is-closed {
+  color: oklch(0.55 0.18 25);
+  background: oklch(0.55 0.18 25 / 0.12);
+}
