@@ -367,7 +367,7 @@ function startCopyAddress() {
   button.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(ADDRESS);
-m      label.textContent = "Copied!";
+label.textContent = "Copied!";
     } catch {
       // Older browsers without the clipboard API: fall back to a hidden text select.
       const helper = document.createElement("textarea");
@@ -395,6 +395,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startPdfDownload();
   startBackToTop();
   startOpenStatus();
+  startCopyAddress();
   loadReviews();
   loadGoogleReviews();
 });
