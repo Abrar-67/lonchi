@@ -355,6 +355,35 @@ function startOpenStatus() {
   }
 }
 
+/* Copy the shop address to the clipboard with a short "Copied!" confirmation. */
+function startCopyAddress() {
+  const button = document.getElementById("copy-address");
+  const label = document.getElementById("copy-address-label");
+  if (!button || !label) return;
+
+  const ADDRESS =
+    "CB 29 Kachukhet, Puraton Bazar, Muslim Modern School Road, Dhaka Cantonment, opposite Akram Masjid, Dhaka 1206";
+
+  button.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(ADDRESS);
+m      label.textContent = "Copied!";
+    } catch {
+      // Older browsers without the clipboard API: fall back to a hidden text select.
+      const helper = document.createElement("textarea");
+      helper.value = ADDRESS;
+      document.body.appendChild(helper);
+      helper.select();
+      document.execCommand("copy");
+      helper.remove();
+      label.textContent = "Copied!";
+    }
+    setTimeout(() => (label.textContent = "Copy address"), 2000);
+  });
+}
+
+
+
 /* Start everything once the page is ready ---------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   startScrollReveal();
