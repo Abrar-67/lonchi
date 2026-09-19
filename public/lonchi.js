@@ -367,7 +367,7 @@ function startCopyAddress() {
   button.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(ADDRESS);
-label.textContent = "Copied!";
+      label.textContent = "Copied!";
     } catch {
       // Older browsers without the clipboard API: fall back to a hidden text select.
       const helper = document.createElement("textarea");
