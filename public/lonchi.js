@@ -314,6 +314,47 @@ function startBackToTop() {
   update();
 }
 
+/* Open now / Closed badge, computed from the shop's real hours in Dhaka time. */
+function startOpenStatus() {
+  const badge = document.getElementById("open-status");
+  if (!badge) return;
+
+  // Opening hours in minutes after midnight, Dhaka time (UTC+6).
+  // A closing time past 24:00 means the shop stays open past midnight.
+  const HOURS_BY_DAY = [
+    { open: 10 * 60, close: 24 * 60 },        // Sunday
+    { open: 10 * 60, close: 24 * 60 },        // Monday
+    { open: 10 * 60, close: 24 * 60 },        // Tuesday
+    { open: 10 * 60, close: 24 * 60 },        // Wednesday
+    { open: 10 * 60, close: 24 * 60 },        // Thursday
+    { open: 10.5 * 60, close: 12.5 * 60 },    // Friday
+    { open: 10 * 60, close: 24.5 * 60 },      // Saturday
+  ];
+
+  // Current time in Dhaka, whatever the visitor's clock says.
+  const now = new Date(Date.now() + (6 * 60 + new Date().getTimezoneOffset()) * 60 * 1000);
+  const day = now.getDay();
+  const minutes = now.getHours() * 60 + now.getMinutes();
+
+  function isOpen() {
+    const today = HOURS_BY_DAY[day];
+    // Still open from yesterday's late night (past-midnight closing)?
+    const yesterday = HOURS_BY_DAY[(day + 6) % 7];
+    if (yesterday.close > 24 * 60 && minutes < yesterday.close - 24 * 60) return true;
+    if (minutes >= today.open && minutes < today.close) return true;
+    return false;
+  }
+
+  badge.hidden = false;
+  if (isOpen()) {
+    badge.textContent = "Open now";
+    badge.classList.add("is-open");
+  } else {
+    badge.textContent = "Closed now";
+    badge.classList.add("is-closed");
+  }
+}
+
 /* Start everything once the page is ready ---------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   startScrollReveal();
@@ -324,6 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startImageDownloads();
   startPdfDownload();
   startBackToTop();
+  startOpenStatus();
   loadReviews();
   loadGoogleReviews();
 });
