@@ -382,6 +382,47 @@ function startCopyAddress() {
   });
 }
 
+/* Product gallery: hover to preview, click or use the keyboard to select. */
+function startServeGallery() {
+  const cards = Array.from(document.querySelectorAll(".serve-card[data-gallery]"));
+  const panels = Array.from(document.querySelectorAll("[data-gallery-panel]"));
+  const title = document.getElementById("serve-gallery-title");
+  if (!cards.length || !panels.length) return;
+
+  const titles = {
+    "ice-cream": "Ice cream moments",
+    waffles: "Loaded waffle moments",
+    boba: "Bubble tea moments",
+  };
+
+  function showGallery(name) {
+    cards.forEach((card) => {
+      const active = card.dataset.gallery === name;
+      card.classList.toggle("is-active", active);
+      card.setAttribute("aria-pressed", String(active));
+    });
+    panels.forEach((panel) => {
+      const active = panel.dataset.galleryPanel === name;
+      panel.hidden = !active;
+      panel.classList.toggle("is-active", active);
+    });
+    if (title) title.textContent = titles[name] || "Lonchi moments";
+  }
+
+  cards.forEach((card) => {
+    const name = card.dataset.gallery;
+    card.addEventListener("mouseenter", () => showGallery(name));
+    card.addEventListener("focus", () => showGallery(name));
+    card.addEventListener("click", () => showGallery(name));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        showGallery(name);
+      }
+    });
+  });
+}
+
 
 
 /* Start everything once the page is ready ---------------------------------- */
@@ -396,6 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startBackToTop();
   startOpenStatus();
   startCopyAddress();
+  startServeGallery();
   loadReviews();
   loadGoogleReviews();
 });
