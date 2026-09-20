@@ -180,8 +180,8 @@
       <div class="wrap">
         <h2 class="reveal">What we serve</h2>
 
-        <div class="grid grid-3 reveal" style="margin-top: 24px">
-          <article class="card">
+        <div class="grid grid-3 serve-grid reveal" style="margin-top: 24px">
+          <article class="card serve-card is-active" data-gallery="ice-cream" tabindex="0" role="button" aria-pressed="true">
             <img
               class="card-photo"
               src="/__l5e/assets-v1/33de1112-e92c-4fa5-9986-9f26ad91987c/unnamed_7.webp"
@@ -194,7 +194,7 @@
             </div>
           </article>
 
-          <article class="card">
+          <article class="card serve-card" data-gallery="waffles" tabindex="0" role="button" aria-pressed="false">
             <img
               class="card-photo"
               src="/__l5e/assets-v1/b79d2751-4e2b-4782-b055-be0ddba1334a/unnamed_3.webp"
@@ -207,7 +207,7 @@
             </div>
           </article>
 
-          <article class="card">
+          <article class="card serve-card" data-gallery="boba" tabindex="0" role="button" aria-pressed="false">
             <img
               class="card-photo"
               src="/__l5e/assets-v1/2f32afd8-465b-482c-800a-86e993b3a74a/unnamed_9.webp"
@@ -219,6 +219,32 @@
               <p class="muted small">Milk teas and fruity boba shaken fresh with chewy pearls.</p>
             </div>
           </article>
+        </div>
+
+        <div class="serve-gallery reveal" aria-live="polite">
+          <div class="serve-gallery-head">
+            <div>
+              <span class="small muted">From Lonchi on Google Maps</span>
+              <h3 id="serve-gallery-title">Ice cream moments</h3>
+            </div>
+            <span class="small muted">Tap or hover a card above</span>
+          </div>
+
+          <div class="serve-gallery-strip is-active" data-gallery-panel="ice-cream" aria-label="Ice cream photos">
+            <figure><img src="/__l5e/assets-v1/d88cd18f-77ec-42b6-a842-5c31eb3bce6b/lonchi-google-ice-cream-chocolate.jpg" alt="Chocolate soft-serve ice cream from Lonchi" loading="lazy" /></figure>
+            <figure><img src="/__l5e/assets-v1/108bb65f-da26-407d-ba17-9afe9a4d15ce/lonchi-google-ice-cream-strawberry.jpg" alt="Strawberry ice cream from Lonchi" loading="lazy" /></figure>
+            <figure><img src="/__l5e/assets-v1/1340f2e8-f5ca-4990-926c-7445b080e9bb/lonchi-google-ice-cream-pistachio.jpg" alt="Pistachio ice cream from Lonchi" loading="lazy" /></figure>
+          </div>
+          <div class="serve-gallery-strip" data-gallery-panel="waffles" aria-label="Waffle photos" hidden>
+            <figure><img src="/__l5e/assets-v1/b4ea81d6-0983-4cfa-997f-a982c2114ecd/lonchi-google-waffle-chocolate.jpg" alt="Chocolate waffle with ice cream from Lonchi" loading="lazy" /></figure>
+          </div>
+          <div class="serve-gallery-strip" data-gallery-panel="boba" aria-label="Boba photos" hidden>
+            <figure><img src="/__l5e/assets-v1/74b9b716-2909-4de1-9ff2-fbaa4c3b3c16/lonchi-google-boba-drink-shop.jpg" alt="Fresh boba drink at the Lonchi shop" loading="lazy" /></figure>
+            <figure><img src="/__l5e/assets-v1/f2c04919-b49d-474e-9d12-6b7326258061/lonchi-google-boba-drinks-board.jpg" alt="Lonchi boba drink selection" loading="lazy" /></figure>
+            <figure><img src="/__l5e/assets-v1/2f32afd8-465b-482c-800a-86e993b3a74a/unnamed_9.webp" alt="Lonchi bubble tea with pearls" loading="lazy" /></figure>
+          </div>
+
+          <a class="google-photo-credit" href="https://maps.app.goo.gl/XKnokmdRqivz1zpm9" target="_blank" rel="noreferrer">Photos from customers and Lonchi on Google Maps</a>
         </div>
 
         <div class="stats reveal">
