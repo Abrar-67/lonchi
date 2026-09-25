@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "b4ea81d6-0983-4cfa-997f-a982c2114ecd",
-  "project_id": "01105dec-66ca-4197-9f40-74ae08da0d6c",
-  "url": "/__l5e/assets-v1/b4ea81d6-0983-4cfa-997f-a982c2114ecd/lonchi-google-waffle-chocolate.jpg",
-  "r2_key": "a/v1/01105dec-66ca-4197-9f40-74ae08da0d6c/b4ea81d6-0983-4cfa-997f-a982c2114ecd/lonchi-google-waffle-chocolate.jpg",
-  "original_filename": "lonchi-google-waffle-chocolate.jpg",
-  "size": 141893,
   "content_type": "image/jpeg",
-  "created_at": "2026-09-20T11:11:45Z"
+  "created_at": "2026-09-20T11:11:45Z",
+  "original_filename": "lonchi-google-waffle-chocolate.jpg",
+  "project_id": "2274625f-67aa-4a53-b2e8-e5dd21e7f1a7",
+  "r2_key": "a/v1/2274625f-67aa-4a53-b2e8-e5dd21e7f1a7/b4ea81d6-0983-4cfa-997f-a982c2114ecd/lonchi-google-waffle-chocolate.jpg",
+  "size": 141893,
+  "url": "/__l5e/assets-v1/b4ea81d6-0983-4cfa-997f-a982c2114ecd/lonchi-google-waffle-chocolate.jpg",
+  "version": 1
 }
