@@ -6,13 +6,17 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const PLACE_ID = "ChIJt-k4cUvHVTcRShZBQWRWZmE";
 const GATEWAY = "https://connector-gateway.lovable.dev/google_maps";
-const FIELDS = "rating,userRatingCount,googleMapsUri,reviews";
+const FIELDS =
+  "rating,userRatingCount,googleMapsUri,reviews,regularOpeningHours,utcOffsetMinutes";
 const CACHE_MS = 6 * 60 * 60 * 1000;
 
 type Payload = {
   rating: number | null;
   total: number | null;
   mapsUrl: string | null;
+  /* Live open/closed straight from Google, plus Google's own wording of the hours. */
+  openNow: boolean | null;
+  weekdayDescriptions: string[];
   reviews: Array<{
     author: string;
     photo: string | null;
@@ -45,11 +49,19 @@ async function loadReviews(): Promise<Payload> {
     throw new Error(`Google request failed [${response.status}]: ${body}`);
   }
 
-  const place = (await response.json()) as {
-    rating?: number;
-    userRatingCount?: number;
-    googleMapsUri?: string;
-    reviews?: Array<{
+type Place = {
+  rating?: number;
+  userRatingCount?: number;
+  googleMapsUri?: string;
+  regularOpeningHours?: {
+    periods?: Array<{
+      open?: { day?: number; hour?: number; minute?: number };
+      close?: { day?: number; hour?: number; minute?: number };
+    }>;
+    weekdayDescriptions?: string[];
+  };
+  utcOffsetMinutes?: number;
+  reviews?: Array<{
       rating?: number;
       text?: { text?: string };
       originalText?: { text?: string };
