@@ -6,17 +6,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 const PLACE_ID = "ChIJt-k4cUvHVTcRShZBQWRWZmE";
 const GATEWAY = "https://connector-gateway.lovable.dev/google_maps";
-const FIELDS =
-  "rating,userRatingCount,googleMapsUri,reviews,regularOpeningHours,utcOffsetMinutes";
+const FIELDS = "rating,userRatingCount,googleMapsUri,reviews";
 const CACHE_MS = 6 * 60 * 60 * 1000;
 
 type Payload = {
   rating: number | null;
   total: number | null;
   mapsUrl: string | null;
-  /* Live open/closed straight from Google, plus Google's own wording of the hours. */
-  openNow: boolean | null;
-  weekdayDescriptions: string[];
   reviews: Array<{
     author: string;
     photo: string | null;
@@ -49,70 +45,24 @@ async function loadReviews(): Promise<Payload> {
     throw new Error(`Google request failed [${response.status}]: ${body}`);
   }
 
-type Place = {
-  rating?: number;
-  userRatingCount?: number;
-  googleMapsUri?: string;
-  regularOpeningHours?: {
-    periods?: Array<{
-      open?: { day?: number; hour?: number; minute?: number };
-      close?: { day?: number; hour?: number; minute?: number };
-    }>;
-    weekdayDescriptions?: string[];
-  };
-  utcOffsetMinutes?: number;
-  reviews?: Array<{
+  const place = (await response.json()) as {
     rating?: number;
-    text?: { text?: string };
-    originalText?: { text?: string };
-    relativePublishTimeDescription?: string;
+    userRatingCount?: number;
     googleMapsUri?: string;
-    authorAttribution?: { displayName?: string; photoUri?: string };
-  }>;
-};
+    reviews?: Array<{
+      rating?: number;
+      text?: { text?: string };
+      originalText?: { text?: string };
+      relativePublishTimeDescription?: string;
+      googleMapsUri?: string;
+      authorAttribution?: { displayName?: string; photoUri?: string };
+    }>;
+  };
 
-let cache: { at: number; place: Place } | null = null;
-
-/* Work out open/closed the same way Google Maps does: from the shop's opening
-   periods and its own time zone. Returns null when Google gives us no hours. */
-function isOpenNow(place: Place, nowMs: number): boolean | null {
-  const periods = place.regularOpeningHours?.periods;
-  const offset = place.utcOffsetMinutes;
-  if (!periods || periods.length === 0 || offset === undefined) return null;
-
-  // Current time inside the shop's time zone, counted as day-of-week * minutes.
-  const local = new Date(nowMs + offset * 60 * 1000);
-  const minutesNow =
-    local.getUTCDay() * 24 * 60 + local.getUTCHours() * 60 + local.getUTCMinutes();
-
-  for (const period of periods) {
-    if (!period.open) continue;
-    const open = period.open;
-    const start = (open.day ?? 0) * 24 * 60 + (open.hour ?? 0) * 60 + (open.minute ?? 0);
-
-    // No closing time means open 24 hours from the opening time.
-    let end = start + 24 * 60;
-    if (period.close) {
-      const close = period.close;
-      end = (close.day ?? 0) * 24 * 60 + (close.hour ?? 0) * 60 + (close.minute ?? 0);
-      // A closing time earlier in the week than the opening means it runs past midnight.
-      if (end <= start) end += 7 * 24 * 60;
-    }
-
-    for (const shift of [0, 7 * 24 * 60]) {
-      if (minutesNow >= start + shift && minutesNow < end + shift) return true;
-    }
-  }
-  return false;
-}
-
-function buildPayload(place: Place): Payload {
   return {
     rating: place.rating ?? null,
     total: place.userRatingCount ?? null,
     mapsUrl: place.googleMapsUri ?? null,
-    openNow: isOpenNow(place, Date.now()),
-    weekdayDescriptions: place.regularOpeningHours?.weekdayDescriptions ?? [],
     // The star average and total count above stay exactly as Google reports
     // them. Only the quoted review cards are limited to 4 and 5 star reviews.
     reviews: (place.reviews ?? [])
