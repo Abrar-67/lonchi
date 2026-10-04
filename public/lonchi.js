@@ -390,9 +390,9 @@ function startServeGallery() {
   if (!cards.length || !panels.length) return;
 
   const titles = {
-    "ice-cream": "Ice cream moments",
-    waffles: "Loaded waffle moments",
-    boba: "Bubble tea moments",
+    "ice-cream": "Today’s frozen crime scene",
+    waffles: "Waffle wreckage",
+    boba: "Suspicious boba evidence",
   };
 
   function showGallery(name) {
