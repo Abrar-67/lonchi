@@ -24,6 +24,10 @@
 
   --font-head: "Sora", system-ui, sans-serif;
   --font-body: "Manrope", system-ui, sans-serif;
+  --chaos-yellow: #f8ff13;
+  --chaos-red: #ff174f;
+  --chaos-cyan: #00edff;
+  --chaos-ink: #120512;
 }
 
 /* 2. Base ---------------------------------------------------------------- */
@@ -1034,3 +1038,112 @@ figure { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .serve-card, .serve-gallery, .serve-gallery-strip.is-active figure { animation: none; }
 }
+
+/* 20. Total-chaos takeover ------------------------------------------------ */
+body {
+  background-color: var(--chaos-yellow);
+  background-image:
+    linear-gradient(90deg, transparent 49%, color-mix(in srgb, var(--chaos-ink) 8%, transparent) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, color-mix(in srgb, var(--chaos-ink) 8%, transparent) 50%, transparent 51%);
+  background-size: 32px 32px;
+  color: var(--chaos-ink);
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--chaos-yellow) 88%, transparent);
+  border-bottom: 4px solid var(--chaos-ink);
+}
+
+.brand { font-weight: 800; transform: rotate(-2deg); }
+.desktop-nav a { font-weight: 800; text-transform: uppercase; }
+.desktop-nav a:nth-child(odd) { transform: rotate(-2deg); }
+.desktop-nav a:nth-child(even) { transform: rotate(2deg); }
+
+.hero {
+  min-height: 78vh;
+  display: grid;
+  align-items: center;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 34px, color-mix(in srgb, var(--chaos-cyan) 42%, transparent) 34px 68px),
+    var(--chaos-yellow);
+  border-bottom: 8px solid var(--chaos-ink);
+}
+
+.hero::before {
+  content: "BAD IDEA  BAD IDEA  BAD IDEA";
+  position: absolute;
+  right: -4rem;
+  top: 5rem;
+  width: 23rem;
+  padding: 10px;
+  color: var(--chaos-yellow);
+  background: var(--chaos-ink);
+  font-family: var(--font-head);
+  font-weight: 800;
+  text-align: center;
+  transform: rotate(12deg);
+  z-index: 2;
+}
+
+.hero h1 {
+  max-width: 13ch;
+  font-size: clamp(3.3rem, 11vw, 8rem);
+  line-height: .84;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 6px 6px 0 var(--chaos-cyan), 11px 11px 0 var(--chaos-red);
+}
+
+.gradient-text { color: var(--chaos-red); background: none; -webkit-text-fill-color: currentColor; }
+.hero p { max-width: 48rem; color: var(--chaos-ink); font-size: 1.15rem; font-weight: 800; }
+.chip { background: var(--chaos-ink); color: var(--chaos-yellow); border: 3px solid var(--chaos-ink); transform: rotate(-3deg); }
+
+.chaos-stamps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.chaos-stamps span {
+  border: 3px solid var(--chaos-ink);
+  padding: 5px 10px;
+  background: var(--chaos-red);
+  color: var(--white);
+  font-family: var(--font-head);
+  font-weight: 800;
+  transform: rotate(-2deg);
+}
+.chaos-stamps span:nth-child(even) { background: var(--chaos-cyan); color: var(--chaos-ink); transform: rotate(3deg); }
+
+.ticker { background: var(--chaos-ink); color: var(--chaos-yellow); border-block: 4px solid var(--chaos-red); }
+.section-soft { background: var(--chaos-cyan); border-block: 5px solid var(--chaos-ink); }
+.section h2 { text-transform: uppercase; font-weight: 800; }
+.section h2::after { content: "!!"; color: var(--chaos-red); }
+
+.card, .badge, .tile, .pay-card, .serve-gallery, .stats {
+  border: 3px solid var(--chaos-ink);
+  border-radius: 2px;
+  box-shadow: 7px 7px 0 var(--chaos-ink);
+}
+.card:nth-child(odd), .tile:nth-child(odd) { transform: rotate(-.55deg); }
+.card:nth-child(even), .tile:nth-child(even) { transform: rotate(.55deg); }
+.card:hover, .tile:hover { transform: translate(-3px, -3px) rotate(0); box-shadow: 11px 11px 0 var(--chaos-red); }
+.badge:nth-child(2), .pay-card { background: var(--chaos-red); color: var(--white); }
+.badge-icon { border: 2px solid var(--chaos-ink); border-radius: 0; background: var(--chaos-yellow); color: var(--chaos-ink); }
+.btn { border-radius: 0; border: 3px solid var(--chaos-ink); box-shadow: 5px 5px 0 var(--chaos-ink); text-transform: uppercase; }
+.btn-primary, .btn-solid { background: var(--chaos-red); color: var(--white); }
+.btn-outline, .btn-ghost { background: var(--chaos-cyan); color: var(--chaos-ink); border-color: var(--chaos-ink); }
+.price-card h4, .menu-board figcaption { background: var(--chaos-yellow); }
+.stars, .star-picker button.on, .stats strong, .google-photo-credit { color: var(--chaos-red); }
+.site-footer { background: var(--chaos-ink); color: var(--white); border-top: 8px solid var(--chaos-red); }
+.mobile-nav { background: var(--chaos-ink); border-color: var(--chaos-red); }
+.mobile-nav a { color: var(--chaos-yellow); }
+
+@media (max-width: 699px) {
+  .hero { min-height: 72vh; padding-top: 70px; }
+  .hero::before { top: 1.4rem; right: -5rem; font-size: .72rem; }
+  .hero h1 { font-size: clamp(3rem, 17vw, 5.4rem); text-shadow: 3px 3px 0 var(--chaos-cyan), 6px 6px 0 var(--chaos-red); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 { animation: chaos-jolt 2.7s steps(1) infinite; }
+  .chaos-stamps span { animation: chaos-wiggle 1.2s ease-in-out infinite alternate; }
+  .chaos-stamps span:nth-child(even) { animation-delay: -.6s; }
+}
+@keyframes chaos-jolt { 0%, 92%, 100% { transform: none; } 94% { transform: translate(-4px, 2px) skew(-2deg); } 96% { transform: translate(4px, -1px) skew(2deg); } }
+@keyframes chaos-wiggle { to { transform: rotate(3deg) translateY(-3px); } }
