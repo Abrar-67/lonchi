@@ -11,3 +11,5 @@
 
 - Keep the homepage as readable HTML with standalone CSS and JavaScript, preserving existing services.
 - Select Google review cards in the frontend from all ratings returned by the public listing endpoint; preserve the reported aggregate rating.
+
+- The budget homepage is static HTML and standalone CSS; use native links and details for menu photos, and leave existing backend services intact while their UI is omitted.
