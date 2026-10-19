@@ -63,8 +63,8 @@ async function loadReviews(): Promise<Payload> {
     rating: place.rating ?? null,
     total: place.userRatingCount ?? null,
     mapsUrl: place.googleMapsUri ?? null,
-    // The star average and total count above stay exactly as Google reports
-    // them. Only the quoted review cards are limited to 4 and 5 star reviews.
+    // Preserve Google's average and all returned ratings. The page chooses
+    // which public review cards to display without changing their content.
     reviews: (place.reviews ?? [])
       .map((review) => ({
         author: review.authorAttribution?.displayName ?? "Google user",
@@ -74,7 +74,6 @@ async function loadReviews(): Promise<Payload> {
         when: review.relativePublishTimeDescription ?? "",
         url: review.googleMapsUri ?? null,
       }))
-      .filter((review) => review.rating >= 4)
       .sort((a, b) => b.rating - a.rating),
   };
 }

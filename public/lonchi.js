@@ -307,7 +307,7 @@ function startBackToTop() {
   }
 
   button.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "instant" });
   });
 
   window.addEventListener("scroll", update, { passive: true });
@@ -427,8 +427,6 @@ function startServeGallery() {
 
 /* Start everything once the page is ready ---------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  startScrollReveal();
-  startPremiumMotion();
   startActiveNavigation();
   startLightbox();
   startReviewForm();
@@ -443,6 +441,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* 4. Live Google reviews --------------------------------------------------- */
+// Pick the longest real comment in each requested rating group.
+function selectGoogleReviews(reviews) {
+  const longestFirst = [...reviews].sort((a, b) => b.text.length - a.text.length);
+  return [
+    longestFirst.find((review) => review.rating === 5),
+    longestFirst.find((review) => review.rating === 4 || review.rating === 3),
+    longestFirst.find((review) => review.rating === 1),
+  ].filter(Boolean);
+}
+
 function renderGoogleReviews(data) {
   const list = document.getElementById("google-review-list");
   const summary = document.getElementById("google-summary");
@@ -468,7 +476,7 @@ function renderGoogleReviews(data) {
     return;
   }
 
-  list.innerHTML = data.reviews
+  list.innerHTML = selectGoogleReviews(data.reviews)
     .map(function (review) {
       const avatar = review.photo
         ? '<img src="' + escapeHtml(review.photo) + '" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()" />'

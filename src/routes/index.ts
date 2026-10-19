@@ -21,6 +21,16 @@ function renderHomePage() {
 }
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Lonchi Ice Cream & More | Kachukhet, Dhaka Cantonment" },
+      { name: "description", content: "Lonchi ice cream, waffles and bubble tea in Kachukhet, Dhaka Cantonment. Browse menu prices and real customer reviews." },
+      { property: "og:title", content: "Lonchi Ice Cream & More | Kachukhet" },
+      { property: "og:description", content: "Browse Lonchi's ice cream, waffle and bubble tea menu and real Google reviews." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   server: {
     handlers: {
       GET: () =>
