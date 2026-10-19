@@ -1034,3 +1034,56 @@ figure { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   .serve-card, .serve-gallery, .serve-gallery-strip.is-active figure { animation: none; }
 }
+
+/* 20. Deliberately basic, static presentation ----------------------------- */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #dedede;
+  --text: #111111;
+  --text-muted: #333333;
+  --border: #555555;
+  --radius: 0px;
+  --shadow-soft: none;
+  --shadow-deep: none;
+  --font-head: "Comic Sans MS", cursive, sans-serif;
+  --font-body: Arial, sans-serif;
+}
+
+html { scroll-behavior: auto !important; }
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transform: none !important;
+  filter: none !important;
+  letter-spacing: 0 !important;
+}
+.reveal { opacity: 1 !important; }
+.blob, .hero::after, .site-header::after, .btn::after,
+.motion-surface::after { display: none !important; }
+.hero, .site-header, .site-header.is-scrolled, .mobile-nav,
+.card, .serve-card, .serve-gallery, .badge, .tile, .pay-card {
+  background: var(--bg) !important;
+}
+.card, .badge, .tile, .pay-card, .serve-gallery {
+  border: 2px solid var(--border);
+}
+.hero { padding: 24px 0; }
+.section { padding: 28px 0; }
+h1 { font-size: 38px; }
+h2 { font-size: 28px; }
+.gradient-text { background: none; color: var(--purple); }
+.ticker { background: var(--bg-soft); color: var(--text); }
+.ticker-track { width: auto; flex-wrap: wrap; }
+.ticker-track > :nth-child(n + 13) { display: none; }
+.btn { border: 2px outset var(--border); }
+.btn-ghost, .dl-link { text-decoration: underline; }
+.google-review-list { grid-template-columns: minmax(0, 1fr); }
+.google-review { padding: 20px; overflow-wrap: anywhere; }
+.google-review > p { font-size: 28px; line-height: 1.45; }
+.google-review .who .name { font-size: 20px; }
+.lightbox { background: var(--text); }
+.back-to-top { background: var(--bg); color: var(--purple); }

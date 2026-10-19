@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the homepage as readable HTML with standalone CSS and JavaScript, preserving existing services.
+- Select Google review cards in the frontend from all ratings returned by the public listing endpoint; preserve the reported aggregate rating.
