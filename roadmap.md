@@ -5,3 +5,4 @@
 - [x] Display longest real Google reviews: one 5-star, one 4/3-star, one 1-star; preserve Google's average.
 
 - [x] Recreate the homepage as a budget static site, retaining all menu prices, contact details and order links; verify the simplified flow.
+- [ ] Prepare Lonchi's first ad campaign, starting with the goal and nearby audience, then confirm the channel, account, creative, tracking and spend approval.
